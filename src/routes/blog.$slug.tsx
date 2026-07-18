@@ -65,7 +65,7 @@ function BlogPostPage() {
 
       <Section className="!py-16">
         <article className="prose prose-invert max-w-3xl">
-          {p.body.map((para, i) => (
+          {p.body.map((para: string, i: number) => (
             <p key={i} className="mb-6 text-lg leading-relaxed text-foreground/90">{para}</p>
           ))}
         </article>

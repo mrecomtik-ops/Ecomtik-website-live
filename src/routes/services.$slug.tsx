@@ -74,7 +74,7 @@ function ServiceDetailPage() {
               <div className="rounded-2xl glass-strong p-6">
                 <p className="eyebrow text-[10px]">What you get</p>
                 <ul className="mt-4 space-y-3 text-sm">
-                  {s.deliverables.map((d) => (
+                  {s.deliverables.map((d: string) => (
                     <li key={d} className="flex items-start gap-2">
                       <Check className="mt-0.5 h-4 w-4 text-[oklch(0.82_0.17_75)]" />
                       <span>{d}</span>
@@ -93,7 +93,7 @@ function ServiceDetailPage() {
 
       <Section eyebrow="Process" title="How we deliver it.">
         <div className="grid gap-6 md:grid-cols-4">
-          {s.process.map((p, i) => (
+          {s.process.map((p: { step: string; description: string }, i: number) => (
             <div key={p.step} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <p className="font-mono text-sm text-brand-gradient">{String(i + 1).padStart(2, "0")}</p>
               <h3 className="mt-3 text-xl">{p.step}</h3>
@@ -105,7 +105,7 @@ function ServiceDetailPage() {
 
       <Section eyebrow="Outcomes" title="What clients see after 90 days.">
         <div className="grid gap-4 md:grid-cols-3">
-          {s.outcomes.map((o) => (
+          {s.outcomes.map((o: string) => (
             <div key={o} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <Check className="h-5 w-5 text-[oklch(0.82_0.17_75)]" />
               <p className="mt-4 text-base leading-relaxed">{o}</p>
@@ -117,7 +117,7 @@ function ServiceDetailPage() {
       {s.faq.length > 0 && (
         <Section eyebrow="FAQ" title="Common questions.">
           <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.02]">
-            {s.faq.map((f) => (
+            {s.faq.map((f: { q: string; a: string }) => (
               <details key={f.q} className="group p-6">
                 <summary className="flex cursor-pointer items-center justify-between text-base font-medium">
                   {f.q}

@@ -81,7 +81,7 @@ function MarketplaceDetailPage() {
 
       <Section eyebrow="Opportunity" title={`Why brands launch in ${m.name}.`}>
         <div className="grid gap-4 md:grid-cols-2">
-          {m.opportunity.map((o) => (
+          {m.opportunity.map((o: string) => (
             <div key={o} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <Check className="mt-0.5 h-5 w-5 text-[oklch(0.82_0.17_75)]" />
               <p className="text-base">{o}</p>
@@ -92,7 +92,7 @@ function MarketplaceDetailPage() {
 
       <Section eyebrow="Requirements" title="What you need to launch.">
         <ul className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.02]">
-          {m.requirements.map((r) => (
+          {m.requirements.map((r: string) => (
             <li key={r} className="flex items-start gap-3 p-5">
               <Globe2 className="mt-0.5 h-5 w-5 text-[oklch(0.82_0.17_75)]" />
               <span>{r}</span>
