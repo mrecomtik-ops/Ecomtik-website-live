@@ -5,13 +5,16 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Grotesk", ui-monospace, monospace;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -31,71 +34,52 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ink: var(--ink);
-  --color-gold: var(--gold);
-  --color-gold-foreground: var(--gold-foreground);
-  --color-sand: var(--sand);
+  --color-brand-1: var(--brand-1);
+  --color-brand-2: var(--brand-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
 }
 
+/* Futuristic dark theme — Ecomtik */
 :root {
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
-  /* Ecomtik palette: warm cream + deep ink + gold accent */
-  --background: oklch(0.982 0.008 85);      /* warm cream */
-  --foreground: oklch(0.22 0.02 260);        /* deep ink */
-  --ink: oklch(0.18 0.025 265);
+  --background: oklch(0.13 0.015 265);          /* near-black indigo */
+  --foreground: oklch(0.98 0.005 90);
+  --surface: oklch(0.16 0.018 265);             /* card base */
+  --surface-2: oklch(0.19 0.02 265);            /* elevated */
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.02 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.02 260);
+  --card: oklch(0.16 0.018 265);
+  --card-foreground: oklch(0.98 0.005 90);
+  --popover: oklch(0.18 0.02 265);
+  --popover-foreground: oklch(0.98 0.005 90);
 
-  --primary: oklch(0.22 0.025 265);          /* ink primary */
-  --primary-foreground: oklch(0.982 0.008 85);
+  /* Orange → gold brand gradient  #F57E03 → #FDA903 */
+  --brand-1: oklch(0.72 0.18 55);
+  --brand-2: oklch(0.82 0.17 75);
 
-  --secondary: oklch(0.94 0.015 85);
-  --secondary-foreground: oklch(0.22 0.02 260);
+  --primary: oklch(0.72 0.18 55);               /* #F57E03 */
+  --primary-foreground: oklch(0.15 0.02 265);
 
-  --muted: oklch(0.95 0.012 85);
-  --muted-foreground: oklch(0.48 0.02 260);
+  --secondary: oklch(0.2 0.022 265);
+  --secondary-foreground: oklch(0.98 0.005 90);
 
-  --accent: oklch(0.94 0.03 75);
-  --accent-foreground: oklch(0.22 0.02 260);
+  --muted: oklch(0.2 0.022 265);
+  --muted-foreground: oklch(0.72 0.02 265);
 
-  --gold: oklch(0.72 0.14 75);               /* warm gold */
-  --gold-foreground: oklch(0.18 0.025 265);
-  --sand: oklch(0.9 0.03 80);
+  --accent: oklch(0.24 0.05 60);
+  --accent-foreground: oklch(0.98 0.005 90);
 
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.62 0.22 27);
+  --destructive-foreground: oklch(0.98 0.005 90);
 
-  --border: oklch(0.88 0.015 85);
-  --input: oklch(0.88 0.015 85);
-  --ring: oklch(0.72 0.14 75);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.82 0.17 75);
 }
 
 .dark {
-  --background: oklch(0.16 0.02 265);
-  --foreground: oklch(0.96 0.01 85);
-  --ink: oklch(0.98 0 0);
-  --card: oklch(0.2 0.022 265);
-  --card-foreground: oklch(0.96 0.01 85);
-  --popover: oklch(0.2 0.022 265);
-  --popover-foreground: oklch(0.96 0.01 85);
-  --primary: oklch(0.96 0.01 85);
-  --primary-foreground: oklch(0.18 0.025 265);
-  --secondary: oklch(0.26 0.025 265);
-  --secondary-foreground: oklch(0.96 0.01 85);
-  --muted: oklch(0.26 0.025 265);
-  --muted-foreground: oklch(0.72 0.02 260);
-  --accent: oklch(0.28 0.03 75);
-  --accent-foreground: oklch(0.96 0.01 85);
-  --gold: oklch(0.78 0.14 75);
-  --gold-foreground: oklch(0.18 0.025 265);
-  --sand: oklch(0.28 0.03 80);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.78 0.14 75);
+  color-scheme: dark;
 }
 
 @layer base {
@@ -105,6 +89,8 @@
 
   html {
     font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color-scheme: dark;
   }
 
   body {
@@ -112,17 +98,25 @@
     color: var(--color-foreground);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.35 0.12 55 / 0.25), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 90% 10%, oklch(0.4 0.14 75 / 0.15), transparent 70%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  ::selection {
+    background-color: oklch(0.72 0.18 55 / 0.4);
   }
 }
 
 @utility container-page {
-  max-width: 76rem;
+  max-width: 80rem;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
@@ -131,19 +125,53 @@
   text-wrap: balance;
 }
 
-@utility gold-underline {
-  background-image: linear-gradient(to right, var(--gold), var(--gold));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 2px;
-  padding-bottom: 2px;
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand-2);
 }
 
-@utility eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
+@utility text-brand-gradient {
+  background-image: linear-gradient(120deg, var(--brand-1), var(--brand-2));
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(120deg, var(--brand-1), var(--brand-2));
+}
+
+@utility glass {
+  background-color: color-mix(in oklab, var(--surface) 60%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid oklch(1 0 0 / 8%);
+}
+
+@utility glass-strong {
+  background-color: color-mix(in oklab, var(--surface-2) 80%, transparent);
+  backdrop-filter: blur(20px);
+  border: 1px solid oklch(1 0 0 / 10%);
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 4%) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 100%);
+}
+
+@utility glow-brand {
+  box-shadow:
+    0 0 0 1px oklch(0.72 0.18 55 / 0.35),
+    0 20px 60px -20px oklch(0.72 0.18 55 / 0.55);
+}
+
+@utility numeral {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
