@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { services } from "../data/services";
+import { marketplaces } from "../data/marketplaces";
+import { posts } from "../data/blog";
 
 const BASE_URL = "";
 
@@ -16,9 +19,14 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/services", changefreq: "monthly", priority: "0.9" },
-          { path: "/case-studies", changefreq: "monthly", priority: "0.9" },
+          { path: "/marketplaces", changefreq: "monthly", priority: "0.9" },
+          { path: "/case-studies", changefreq: "monthly", priority: "0.8" },
+          { path: "/blog", changefreq: "weekly", priority: "0.8" },
           { path: "/about", changefreq: "monthly", priority: "0.7" },
           { path: "/contact", changefreq: "monthly", priority: "0.7" },
+          ...services.map((s) => ({ path: `/services/${s.slug}`, changefreq: "monthly" as const, priority: "0.8" })),
+          ...marketplaces.map((m) => ({ path: `/marketplaces/${m.slug}`, changefreq: "monthly" as const, priority: "0.8" })),
+          ...posts.map((p) => ({ path: `/blog/${p.slug}`, changefreq: "monthly" as const, priority: "0.6" })),
         ];
 
         const urls = entries

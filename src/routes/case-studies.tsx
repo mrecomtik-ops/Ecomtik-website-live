@@ -13,12 +13,9 @@ export const Route = createFileRoute("/case-studies")({
         content:
           "Real results from consumer brands scaled by Ecomtik across the GCC, Europe and the US — beauty, home, wellness and F&B.",
       },
+      { name: "keywords", content: "Amazon case studies, Amazon UAE results, Amazon growth case studies, ecommerce success stories Dubai" },
       { property: "og:title", content: "Ecomtik Case Studies" },
-      {
-        property: "og:description",
-        content:
-          "Amazon growth results from beauty, home, wellness and F&B brands scaled by Ecomtik.",
-      },
+      { property: "og:description", content: "Amazon growth results from beauty, home, wellness and F&B brands." },
       { property: "og:url", content: "/case-studies" },
     ],
     links: [{ rel: "canonical", href: "/case-studies" }],
@@ -37,7 +34,6 @@ const cases = [
       { k: "-46%", v: "Wasted ad spend" },
       { k: "14.6%", v: "PDP conversion rate" },
     ],
-    tone: "from-[oklch(0.9_0.05_60)] to-[oklch(0.85_0.08_40)]",
   },
   {
     brand: "Halcyon Home",
@@ -49,7 +45,6 @@ const cases = [
       { k: "+38%", v: "Buy Box share" },
       { k: "1", v: "New marketplace launched" },
     ],
-    tone: "from-[oklch(0.88_0.03_240)] to-[oklch(0.82_0.05_260)]",
   },
   {
     brand: "Kayan Wellness",
@@ -61,7 +56,6 @@ const cases = [
       { k: "$4.2M", v: "GMV in year one" },
       { k: "3", v: "Marketplaces active" },
     ],
-    tone: "from-[oklch(0.9_0.04_140)] to-[oklch(0.83_0.07_150)]",
   },
   {
     brand: "Verdant Foods",
@@ -73,7 +67,6 @@ const cases = [
       { k: "2.7x", v: "Contribution margin" },
       { k: "31%", v: "Subscribe rate" },
     ],
-    tone: "from-[oklch(0.9_0.04_100)] to-[oklch(0.82_0.06_90)]",
   },
 ];
 
@@ -81,44 +74,38 @@ function CaseStudiesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Case studies"
+        eyebrow="Results"
         title="Growth you can put a number on."
         description="A selection of client work from the last 24 months. All figures verified with the brand."
       />
 
       <Section className="!pt-24">
-        <div className="grid gap-10">
+        <div className="grid gap-8">
           {cases.map((c, i) => (
             <article
               key={c.brand}
-              className="grid overflow-hidden rounded-3xl border border-border bg-card md:grid-cols-12"
+              className="grid overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] md:grid-cols-12"
             >
-              <div
-                className={`relative flex flex-col justify-between bg-gradient-to-br ${c.tone} p-10 md:col-span-4 md:p-12`}
-              >
+              <div className="relative flex flex-col justify-between border-b border-white/10 bg-gradient-to-br from-[oklch(0.22_0.05_60)]/50 to-[oklch(0.14_0.015_265)] p-10 md:col-span-4 md:border-b-0 md:border-r md:p-12">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-foreground/60">
+                  <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                     Case {String(i + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mt-4 font-display text-3xl text-foreground md:text-4xl">
-                    {c.brand}
-                  </h3>
-                  <p className="mt-2 text-sm text-foreground/70">{c.category}</p>
+                  <h3 className="mt-4 font-display text-3xl md:text-4xl">{c.brand}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{c.category}</p>
                 </div>
-                <div className="mt-10 flex items-center gap-2 text-sm font-medium text-foreground">
+                <div className="mt-10 flex items-center gap-2 text-sm font-medium text-brand-gradient">
                   Read the story <ArrowUpRight className="h-4 w-4" />
                 </div>
               </div>
 
               <div className="p-10 md:col-span-8 md:p-12">
-                <h4 className="text-balance font-display text-2xl md:text-3xl">
-                  {c.headline}
-                </h4>
+                <h4 className="text-balance font-display text-2xl md:text-3xl">{c.headline}</h4>
                 <p className="mt-4 max-w-2xl text-muted-foreground">{c.body}</p>
-                <div className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-3">
+                <div className="mt-8 grid gap-6 border-t border-white/10 pt-6 sm:grid-cols-3">
                   {c.stats.map((s) => (
                     <div key={s.k}>
-                      <p className="font-display text-3xl text-primary">{s.k}</p>
+                      <p className="font-display numeral text-3xl text-brand-gradient">{s.k}</p>
                       <p className="mt-1 text-xs text-muted-foreground">{s.v}</p>
                     </div>
                   ))}
@@ -130,13 +117,11 @@ function CaseStudiesPage() {
       </Section>
 
       <Section className="!pt-0">
-        <div className="rounded-3xl border border-border bg-primary p-10 text-primary-foreground md:p-16">
+        <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[oklch(0.22_0.05_60)]/40 to-[oklch(0.14_0.015_265)] p-10 md:p-16">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
-            <h2 className="text-3xl md:text-4xl">
-              Your brand could be next.
-            </h2>
+            <h2 className="text-3xl md:text-4xl">Your brand could be next.</h2>
             <div className="flex md:justify-end">
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90">
                 <Link to="/contact">Book a growth audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
