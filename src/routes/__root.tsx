@@ -109,18 +109,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Ecomtik is a Dubai-based brand builder and Amazon growth agency helping consumer brands scale profitably across 21 global marketplaces.",
+          "Ecomtik builds consumer brands from Dubai and scales them across 21 Amazon marketplaces. Logo, packaging, PPC, PDPs, DSP — one team, one accountable partner.",
       },
       { name: "author", content: "Ecomtik" },
       { property: "og:site_name", content: "Ecomtik" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "Ecomtik — Dubai Amazon Growth Agency" },
+      { property: "og:title", content: "Ecomtik — Dubai Brand Builder & Amazon Growth Agency" },
       {
         property: "og:description",
         content:
-          "Brand builder and Amazon growth partner for ambitious consumer brands.",
+          "Ecomtik builds consumer brands from Dubai and scales them across 21 Amazon marketplaces. Logo, packaging, PPC, PDPs, DSP — one team, one accountable partner.",
       },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Ecomtik — Dubai Brand Builder & Amazon Growth Agency" },
+      { name: "twitter:description", content: "Ecomtik builds consumer brands from Dubai and scales them across 21 Amazon marketplaces. Logo, packaging, PPC, PDPs, DSP — one team, one accountable partner." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/29e7ea2b-301b-44e4-a805-699d63186abd/id-preview-58ef5146--34eddd65-3e61-4fdb-a191-689056859c8a.lovable.app-1784367643720.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/29e7ea2b-301b-44e4-a805-699d63186abd/id-preview-58ef5146--34eddd65-3e61-4fdb-a191-689056859c8a.lovable.app-1784367643720.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
