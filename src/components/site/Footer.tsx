@@ -1,9 +1,24 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, MessageCircle, Linkedin, Instagram } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Instagram, Facebook } from "lucide-react";
 import { Logo } from "./Logo";
 import { site, whatsappUrl } from "@/data/site";
 import { trackAServices, trackBServices } from "@/data/services";
 import { marketplacesByRegion } from "@/data/marketplaces";
+
+// Lucide has no TikTok — use a simple inline SVG.
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M19.6 6.3a5.6 5.6 0 0 1-3.4-1.4 5.6 5.6 0 0 1-1.5-3.2h-3.3v13.6a2.7 2.7 0 1 1-2.7-2.7c.3 0 .6 0 .8.1V9.3a6 6 0 0 0-.8-.1 6 6 0 1 0 6 6V9a8.9 8.9 0 0 0 4.9 1.5V7.2c-.4 0-.7 0-1-.1z" />
+    </svg>
+  );
+}
+
+const socials = [
+  { href: site.socials.instagram, label: "Instagram", Icon: Instagram },
+  { href: site.socials.tiktok, label: "TikTok", Icon: TikTokIcon },
+  { href: site.socials.facebook, label: "Facebook", Icon: Facebook },
+];
 
 export function Footer() {
   return (
@@ -16,7 +31,7 @@ export function Footer() {
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
               A Dubai-based brand builder and Amazon growth agency operating across
-              21 global marketplaces. We build brands that win the digital shelf.
+              21 global marketplaces. From idea to established brand — one team, one plan.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
@@ -32,12 +47,18 @@ export function Footer() {
               </li>
             </ul>
             <div className="mt-6 flex gap-3">
-              <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-md border border-white/10 text-muted-foreground hover:text-foreground">
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a href={site.socials.instagram} target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-md border border-white/10 text-muted-foreground hover:text-foreground">
-                <Instagram className="h-4 w-4" />
-              </a>
+              {socials.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all hover:text-[oklch(0.15_0.02_265)] hover:bg-brand-gradient hover:border-transparent hover:shadow-[0_0_20px_oklch(0.72_0.18_55/0.5)] hover:scale-110"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -66,11 +87,12 @@ export function Footer() {
           <div className="md:col-span-2">
             <h4 className="eyebrow text-[10px]">Company</h4>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <li><Link to="/" className="hover:text-foreground">Home</Link></li>
               <li><Link to="/about" className="hover:text-foreground">About</Link></li>
-              <li><Link to="/case-studies" className="hover:text-foreground">Case studies</Link></li>
+              <li><Link to="/services" className="hover:text-foreground">Services</Link></li>
+              <li><Link to="/marketplaces" className="hover:text-foreground">Marketplaces</Link></li>
               <li><Link to="/blog" className="hover:text-foreground">Blog</Link></li>
               <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
-              <li><Link to="/marketplaces" className="hover:text-foreground">Marketplaces</Link></li>
             </ul>
           </div>
 

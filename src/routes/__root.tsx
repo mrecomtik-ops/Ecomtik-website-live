@@ -34,7 +34,7 @@ const localBusinessJsonLd = {
     addressCountry: "AE",
   },
   areaServed: ["AE", "SA", "EG", "GB", "DE", "FR", "IT", "ES", "NL", "SE", "PL", "US", "CA", "JP", "SG", "AU", "IN", "TR", "MX", "BR"],
-  sameAs: [site.socials.linkedin, site.socials.instagram],
+  sameAs: [site.socials.instagram, site.socials.tiktok, site.socials.facebook],
 };
 
 function NotFoundComponent() {
