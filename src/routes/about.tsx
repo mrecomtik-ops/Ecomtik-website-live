@@ -37,52 +37,45 @@ function AboutPage() {
     <>
       <PageHero
         eyebrow="About Ecomtik"
-        title="Built by operators. Trusted by founders."
-        description="We started Ecomtik in 2019 after a decade running ecommerce inside consumer brands. We were tired of agencies that optimized for hours, not outcomes — so we built the team we wished we could hire."
+        title="BUILT TO CREATE BRANDS THAT SCALE."
+        description="Ecomtik helps businesses move from ideas to established brands through strategic branding, product development, marketplace expertise, and growth-focused execution."
       />
 
       <Section className="!pt-24">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
+        <div className="grid gap-12 md:grid-cols-12 items-center">
+          <div className="md:col-span-6">
             <p className="eyebrow">Our story</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold" style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}>Where ideas become global brands.</h2>
+            <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/90">
+              <p>Ecomtik is a Dubai-based brand builder and Amazon growth agency. We work with entrepreneurs and businesses that want to turn a product idea into a brand — and a brand into a sustainable, multi-marketplace business.</p>
+              <p>Our team combines brand design, product development and Amazon expertise under one roof. Whether you need a logo and packaging, or a full Amazon private label launch, you work with the same people from start to finish.</p>
+              <p>We're honest, practical, and long-term. No template decks, no vanity metrics — just the work that actually moves brands forward.</p>
+            </div>
           </div>
-          <div className="md:col-span-8">
-            <div className="space-y-6 text-lg leading-relaxed text-foreground/90">
-              <p>Ecomtik began with a single account on Amazon.ae and a hypothesis: that operators who had built brands from the inside would make the best agency team. Six years later, we've launched and scaled over 40 brands across 21 marketplaces.</p>
-              <p>We're headquartered in Dubai's Al Karama district, with satellite pods in Riyadh and London. Our clients range from founder-led beauty brands doing their first million on Amazon.ae, to established European manufacturers entering the GCC with full P&L accountability.</p>
-              <p>What ties them together is a shared preference: strategic partners over service providers, craft over scale, and unit economics over vanity metrics.</p>
+          <div className="md:col-span-6">
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.5)]">
+              <img
+                src={aboutImg.url}
+                alt="Ecomtik brand strategy workspace with premium product prototypes and analytics"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-[oklch(0.72_0.18_55)]/20" />
             </div>
           </div>
         </div>
       </Section>
 
-      <Section eyebrow="Values" title="How we operate.">
-        <div className="grid gap-6 md:grid-cols-2">
-          {values.map((v) => (
-            <div key={v.t} className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
-              <span className="grid h-11 w-11 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)]">
-                <v.icon className="h-5 w-5" />
+      <Section eyebrow="Our approach" title="How we build brands that last.">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {approach.map((a) => (
+            <div key={a.t} className="group rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.15)] hover:-translate-y-1">
+              <span className="grid h-11 w-11 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)] transition-transform group-hover:scale-110">
+                <a.icon className="h-5 w-5" />
               </span>
-              <h3 className="mt-6 text-xl">{v.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.d}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Team" title="A senior team on every account.">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {team.map((m) => (
-            <div key={m.name} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-              <div className="flex items-center gap-4">
-                <div className="grid h-14 w-14 place-items-center rounded-full bg-brand-gradient font-display text-lg font-semibold text-[oklch(0.15_0.02_265)]">
-                  {m.initials}
-                </div>
-                <div>
-                  <p className="font-medium">{m.name}</p>
-                  <p className="text-sm text-muted-foreground">{m.role}</p>
-                </div>
-              </div>
+              <h3 className="mt-6 text-xl font-bold" style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}>{a.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.d}</p>
             </div>
           ))}
         </div>
@@ -92,15 +85,15 @@ function AboutPage() {
         <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[oklch(0.22_0.05_60)]/40 to-[oklch(0.14_0.015_265)] p-10 md:p-16">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl">Want to work with us?</h2>
-              <p className="mt-3 text-muted-foreground">We take on a small number of new brands each quarter. Tell us where you are — we'll tell you honestly whether we can help.</p>
+              <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}>Want to work with us?</h2>
+              <p className="mt-3 text-muted-foreground">Tell us about your brand and marketplace goals. We'll come back with a practical point of view.</p>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">
-              <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90">
-                <Link to="/contact">Start a conversation <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform">
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" /></a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 hover:bg-white/10">
-                <Link to="/case-studies">See our work</Link>
+                <Link to="/services">See services</Link>
               </Button>
             </div>
           </div>
@@ -109,3 +102,4 @@ function AboutPage() {
     </>
   );
 }
+
