@@ -17,17 +17,19 @@ export const site = {
     { d: "Saturday", h: "Closed" },
   ],
   socials: {
-    linkedin: "https://linkedin.com/company/ecomtik",
-    instagram: "https://instagram.com/ecomtik",
+    instagram: "https://www.instagram.com/ecomtik/",
+    tiktok: "https://www.tiktok.com/@ecomtikofficial",
+    facebook: "https://www.facebook.com/share/1D6Preefkm/?mibextid=wwXIfr",
   },
   stats: {
+    brands: "500+",
     marketplaces: 21,
-    servicesTrackA: 5,
-    servicesTrackB: 6,
-    brands: "40+",
-    gmv: "$180M+",
+    satisfaction: "98%",
+    rating: "5★",
   },
 };
 
-export const whatsappUrl = (msg = "Hi Ecomtik, I'd like to discuss my brand.") =>
+export const whatsappUrl = (msg = "Hi Ecomtik, I'd like to book a free consultation.") =>
   `https://wa.me/${site.whatsapp.replace(/[^\d]/g, "")}?text=${encodeURIComponent(msg)}`;
+
+export const WHATSAPP_URL = whatsappUrl();

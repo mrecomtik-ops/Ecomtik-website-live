@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { trackAServices, trackBServices } from "@/data/services";
 import { marketplacesByRegion } from "@/data/marketplaces";
+import { WHATSAPP_URL } from "@/data/site";
 
 const primary = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/case-studies", label: "Results" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -88,15 +88,14 @@ export function Header() {
             </div>
           </MegaTrigger>
 
-          <HeaderLink to="/case-studies">Results</HeaderLink>
           <HeaderLink to="/blog">Blog</HeaderLink>
           <HeaderLink to="/about">About</HeaderLink>
           <HeaderLink to="/contact">Contact</HeaderLink>
         </nav>
 
         <div className="hidden lg:block">
-          <Button asChild size="sm" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90">
-            <Link to="/contact">Book a call</Link>
+          <Button asChild size="sm" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform">
+            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Book Free Consultation</a>
           </Button>
         </div>
 
@@ -163,7 +162,7 @@ export function Header() {
             </MobileGroup>
 
             <Button asChild className="mt-3 bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold">
-              <Link to="/contact" onClick={() => setOpen(false)}>Book a call</Link>
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Book Free Consultation</a>
             </Button>
           </nav>
         </div>
@@ -176,9 +175,10 @@ function HeaderLink({ to, children }: { to: string; children: React.ReactNode })
   return (
     <Link
       to={to}
-      className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-      activeProps={{ className: "text-foreground" }}
+      className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:text-foreground hover:bg-white/5"
+      activeProps={{ className: "bg-white/5 text-foreground ring-1 ring-[oklch(0.72_0.18_55)]/50 shadow-[0_0_15px_oklch(0.72_0.18_55/0.25)]" }}
       activeOptions={{ exact: to === "/" }}
+      style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}
     >
       {children}
     </Link>

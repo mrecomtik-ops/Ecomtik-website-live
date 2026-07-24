@@ -1,21 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, Compass, Handshake, Sparkles } from "lucide-react";
+import { ArrowRight, Brain, CheckCircle2, Eye, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
+import { WHATSAPP_URL } from "@/data/site";
+import aboutImg from "@/assets/ecomtik-brand-strategy-workspace.webp.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Ecomtik — Dubai Brand Builder & Amazon Growth Agency" },
+      { title: "About Ecomtik — Built to Create Brands That Scale" },
       {
         name: "description",
         content:
-          "Founded in Dubai in 2019, Ecomtik is a team of operators, marketers and creatives building consumer brands on Amazon across 21 global marketplaces.",
+          "Ecomtik helps businesses move from ideas to established brands through strategic branding, product development, marketplace expertise, and growth-focused execution.",
       },
-      { name: "keywords", content: "about Ecomtik, Dubai ecommerce agency, Amazon agency team, brand agency Dubai" },
-      { property: "og:title", content: "About Ecomtik" },
-      { property: "og:description", content: "A Dubai team of operators, marketers and creatives." },
+      { name: "keywords", content: "brand building agency, Amazon growth agency Dubai, brand strategy, product development" },
+      { property: "og:title", content: "About Ecomtik — Built to Create Brands That Scale" },
+      { property: "og:description", content: "Brands built with strategic thinking, quality execution and long-term growth in mind." },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -23,20 +25,11 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-const values = [
-  { icon: Compass, t: "Operators first", d: "Most of our team has run a P&L. We think like a category manager, not a media buyer." },
-  { icon: Handshake, t: "Aligned incentives", d: "We win when your unit economics improve. Retainers scale with results, not hours logged." },
-  { icon: Sparkles, t: "Craft over volume", d: "Fewer, better clients. Senior operators on every account — never a rotating junior team." },
-  { icon: Building2, t: "Regional, global reach", d: "Dubai HQ, pods in Riyadh and London. Native content in Arabic, English, German, French, Japanese." },
-];
-
-const team = [
-  { name: "Omar Haddad", role: "Founder & CEO", initials: "OH" },
-  { name: "Sarah Meister", role: "Head of Growth", initials: "SM" },
-  { name: "Yusuf Al Balushi", role: "Head of Media", initials: "YB" },
-  { name: "Priya Nair", role: "Creative Director", initials: "PN" },
-  { name: "Daniel Voss", role: "Head of Operations", initials: "DV" },
-  { name: "Layla Kassab", role: "Client Partner, GCC", initials: "LK" },
+const approach = [
+  { icon: Brain, t: "Strategic Thinking", d: "We combine research, creativity, and marketplace knowledge to build brands with a clear point of view." },
+  { icon: CheckCircle2, t: "Quality Execution", d: "Every stage — from logo to listing — is built with attention to detail and craftsmanship." },
+  { icon: Eye, t: "Transparent Process", d: "Clear communication from planning to launch. You always know what's happening and why." },
+  { icon: TrendingUp, t: "Long-Term Growth", d: "We build brands designed for sustainable expansion across categories and marketplaces." },
 ];
 
 function AboutPage() {
