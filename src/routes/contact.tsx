@@ -8,23 +8,26 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { site, whatsappUrl } from "@/data/site";
+import { services } from "@/data/services";
+import { marketplaces } from "@/data/marketplaces";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Ecomtik — Book an Amazon Growth Audit in Dubai" },
+      { title: "Contact Ecomtik — Book a Free Consultation in Dubai" },
       {
         name: "description",
         content:
-          "Get in touch with Ecomtik's Dubai team. WhatsApp, email or book a free Amazon growth audit. Al Kaabi Building, Al Karama, Dubai.",
+          "Get in touch with Ecomtik's Dubai team. WhatsApp, email or book a free consultation. Al Kaabi Building, Al Karama, Dubai. We usually respond within one business day.",
       },
-      { name: "keywords", content: "contact Amazon agency Dubai, Ecomtik contact, Amazon growth audit Dubai, WhatsApp Ecomtik" },
+      { name: "keywords", content: "contact Amazon agency Dubai, Ecomtik contact, Amazon consultation Dubai, WhatsApp Ecomtik" },
       { property: "og:title", content: "Contact Ecomtik" },
-      { property: "og:description", content: "Book a free Amazon growth audit with our Dubai team." },
+      { property: "og:description", content: "Tell us what you're building — we usually respond within one business day." },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
@@ -36,8 +39,11 @@ const schema = z.object({
   name: z.string().min(2, "Please enter your name"),
   email: z.string().email("Enter a valid email"),
   company: z.string().min(2, "Please enter your company"),
+  service: z.string().min(1, "Select the service you need"),
+  marketplace: z.string().min(1, "Select a target marketplace"),
   budget: z.string().min(1, "Select a budget range"),
   message: z.string().min(20, "Tell us a little more (min 20 chars)"),
+  consent: z.literal(true, { errorMap: () => ({ message: "Please agree so we can contact you" }) }),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -52,13 +58,13 @@ function ContactPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", email: "", company: "", budget: "", message: "" },
+    defaultValues: { name: "", email: "", company: "", service: "", marketplace: "", budget: "", message: "", consent: false as unknown as true },
   });
 
   async function onSubmit(values: FormValues) {
     await new Promise((r) => setTimeout(r, 700));
     console.log("Contact submission", values);
-    toast.success("Thanks — we'll be in touch within two business days.");
+    toast.success("Thanks — we usually respond within one business day.");
     reset();
   }
 
@@ -66,8 +72,8 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Let's talk about your next quarter."
-        description="Tell us where your brand is and where you want it to go. We reply to every inquiry within two business days — usually with an initial point of view attached."
+        title="Tell us what you're building."
+        description="Share where your brand is and where you want it to go. We usually respond within one business day — often with an initial point of view attached."
       />
 
       <Section className="!pt-16">
@@ -79,12 +85,12 @@ function ContactPage() {
           >
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
-                <Label htmlFor="name">Your name</Label>
+                <Label htmlFor="name">Name</Label>
                 <Input id="name" placeholder="Layla Al Nasser" {...register("name")} className="mt-2 bg-white/5 border-white/10" />
                 {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name.message}</p>}
               </div>
               <div>
-                <Label htmlFor="email">Work email</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input id="email" type="email" placeholder="layla@brand.com" {...register("email")} className="mt-2 bg-white/5 border-white/10" />
                 {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email.message}</p>}
               </div>
@@ -95,6 +101,39 @@ function ContactPage() {
                 <Label htmlFor="company">Company</Label>
                 <Input id="company" placeholder="Aurelia Beauty" {...register("company")} className="mt-2 bg-white/5 border-white/10" />
                 {errors.company && <p className="mt-1 text-xs text-destructive">{errors.company.message}</p>}
+              </div>
+              <div>
+                <Label htmlFor="service">Service needed</Label>
+                <Select value={watch("service")} onValueChange={(v) => setValue("service", v, { shouldValidate: true })}>
+                  <SelectTrigger id="service" className="mt-2 w-full bg-white/5 border-white/10">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {services.map((s) => (
+                      <SelectItem key={s.slug} value={s.slug}>{s.title}</SelectItem>
+                    ))}
+                    <SelectItem value="not-sure">Not sure yet</SelectItem>
+                  </SelectContent>
+                </Select>
+                {errors.service && <p className="mt-1 text-xs text-destructive">{errors.service.message}</p>}
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              <div>
+                <Label htmlFor="marketplace">Target marketplace</Label>
+                <Select value={watch("marketplace")} onValueChange={(v) => setValue("marketplace", v, { shouldValidate: true })}>
+                  <SelectTrigger id="marketplace" className="mt-2 w-full bg-white/5 border-white/10">
+                    <SelectValue placeholder="Select a marketplace" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {marketplaces.map((m) => (
+                      <SelectItem key={m.slug} value={m.slug}>{m.flag} {m.name}</SelectItem>
+                    ))}
+                    <SelectItem value="multiple">Multiple / not sure</SelectItem>
+                  </SelectContent>
+                </Select>
+                {errors.marketplace && <p className="mt-1 text-xs text-destructive">{errors.marketplace.message}</p>}
               </div>
               <div>
                 <Label htmlFor="budget">Monthly budget</Label>
@@ -114,7 +153,7 @@ function ContactPage() {
             </div>
 
             <div className="mt-6">
-              <Label htmlFor="message">What are you trying to solve?</Label>
+              <Label htmlFor="message">Message</Label>
               <Textarea
                 id="message"
                 rows={6}
@@ -125,8 +164,21 @@ function ContactPage() {
               {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message.message}</p>}
             </div>
 
+            <div className="mt-6 flex items-start gap-3">
+              <Checkbox
+                id="consent"
+                checked={watch("consent") as unknown as boolean}
+                onCheckedChange={(v) => setValue("consent", (v === true) as true, { shouldValidate: true })}
+                className="mt-0.5"
+              />
+              <Label htmlFor="consent" className="text-sm font-normal text-muted-foreground leading-relaxed">
+                I agree that Ecomtik may contact me about my inquiry and store the details submitted in this form.
+              </Label>
+            </div>
+            {errors.consent && <p className="mt-1 text-xs text-destructive">{errors.consent.message}</p>}
+
             <div className="mt-8 flex items-center justify-between gap-4">
-              <p className="text-xs text-muted-foreground">We reply within two business days.</p>
+              <p className="text-xs text-muted-foreground">We usually respond within one business day.</p>
               <Button type="submit" size="lg" disabled={isSubmitting} className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90">
                 {isSubmitting ? "Sending…" : (<>Send inquiry <Send className="ml-2 h-4 w-4" /></>)}
               </Button>
