@@ -88,7 +88,7 @@ function BlogPostPage() {
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
               <h2 className="text-3xl md:text-4xl">Want a plan like this for your brand?</h2>
-              <p className="mt-3 text-muted-foreground">Book a discovery call — we'll come back with an initial point of view within two business days.</p>
+              <p className="mt-3 text-muted-foreground">Book a discovery call — we usually respond within one business day.</p>
             </div>
             <div className="flex md:justify-end">
               <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90">

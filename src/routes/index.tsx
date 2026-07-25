@@ -7,15 +7,24 @@ import {
   TrendingUp,
   Check,
   Sparkles,
+  Lightbulb,
+  Palette,
+  Hammer,
+  Rocket,
+  BarChart3,
+  User,
+  ShoppingBag,
+  Building2,
+  Globe,
+  Quote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
 import { GridBg } from "@/components/site/GridBg";
+import { CountUp } from "@/components/site/CountUp";
 import { trackAServices, trackBServices } from "@/data/services";
 import { marketplacesByRegion, marketplaces } from "@/data/marketplaces";
-import { site, WHATSAPP_URL } from "@/data/site";
 import heroImg from "@/assets/ecomtik-brand-factory-hero.webp.asset.json";
-import processImg from "@/assets/ecomtik-brand-creation-process.webp.asset.json";
 import globeImg from "@/assets/ecomtik-global-marketplace-network.webp.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -25,7 +34,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Ecomtik helps entrepreneurs and businesses create powerful brands, develop products, launch on Amazon, and expand across 21 global marketplaces — from Dubai.",
+          "Ecomtik helps entrepreneurs and businesses create powerful brands, develop products, launch on Amazon, and expand across 21 Amazon marketplaces — from Dubai.",
       },
       { name: "keywords", content: "brand building agency, Amazon growth agency, Amazon private label, product sourcing, brand launch Dubai, global marketplace expansion" },
       { property: "og:title", content: "Ecomtik — Build Brands. Scale Globally." },
@@ -37,12 +46,41 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const stats = [
-  { k: site.stats.brands, v: "Brands Supported" },
-  { k: `${site.stats.marketplaces}`, v: "Global Marketplaces" },
-  { k: site.stats.satisfaction, v: "Client Satisfaction" },
-  { k: site.stats.rating, v: "Rated Service" },
+const stats: { value: number; suffix: string; label: string }[] = [
+  { value: 500, suffix: "+", label: "Brands Supported" },
+  { value: 21, suffix: "", label: "Global Marketplaces" },
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
+  { value: 5, suffix: "★", label: "Rated Service" },
 ];
+
+const factoryStages = [
+  { n: "01", title: "Discover", desc: "Category, customer and margin analysis to lock the opportunity.", Icon: Lightbulb },
+  { n: "02", title: "Design", desc: "Brand identity, packaging and product content built to convert.", Icon: Palette },
+  { n: "03", title: "Build", desc: "Sourcing, sampling and production with QC at every step.", Icon: Hammer },
+  { n: "04", title: "Launch", desc: "Listing, PPC and creative that hit rank targets in 12 weeks.", Icon: Rocket },
+  { n: "05", title: "Scale", desc: "New marketplaces, DTC and creator programs to compound growth.", Icon: BarChart3 },
+];
+
+const audiences = [
+  { title: "First-Time Entrepreneurs", desc: "You have a product idea and need a partner who can build the brand and get it live on Amazon.", Icon: User },
+  { title: "Amazon Sellers", desc: "You already sell on Amazon and want to fix listings, PPC and creative to unlock growth.", Icon: ShoppingBag },
+  { title: "Existing Businesses", desc: "You run an offline or DTC business and want to add Amazon and marketplaces as a channel.", Icon: Building2 },
+  { title: "Global Expansion Brands", desc: "You're established in one market and ready to scale across the GCC, Europe, US and Asia.", Icon: Globe },
+];
+
+const testimonials = [
+  { quote: "Ecomtik rebuilt our Amazon.ae presence and got us into KSA within a quarter. Rank moved, conversion moved, and the reporting is honest.", author: "Founder", brand: "GCC beauty brand" },
+  { quote: "One team from logo to launch. That was the whole reason we chose them and it delivered — our first FBA order was live in 11 weeks.", author: "COO", brand: "UAE home goods" },
+  { quote: "They fixed our PPC waste inside four weeks and reset our creative for Q4. TACOS dropped, sales stayed flat, then grew.", author: "Head of Ecommerce", brand: "MENA supplements" },
+];
+
+const regionAnchors: Record<string, string> = {
+  "GCC & MENA": "gcc-mena",
+  "Europe": "europe",
+  "North America": "north-america",
+  "Asia Pacific": "asia-pacific",
+  "Latin America": "latin-america",
+};
 
 function HomePage() {
   return (
@@ -61,7 +99,7 @@ function HomePage() {
           <div className="md:col-span-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.72_0.18_55)]/30 bg-[oklch(0.72_0.18_55)]/10 px-3 py-1 text-[11px] font-semibold tracking-widest uppercase text-[oklch(0.82_0.17_75)]">
               <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.72_0.18_55)] shadow-[0_0_10px_oklch(0.72_0.18_55)]" />
-              Global Brand Building & Amazon Growth
+              Global Brand Building &amp; Amazon Growth
             </div>
             <h1 className="mt-5 text-balance text-5xl leading-[1.02] font-bold md:text-7xl" style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}>
               BUILD BRANDS.<br />
@@ -69,11 +107,11 @@ function HomePage() {
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Ecomtik helps entrepreneurs and businesses create powerful brands, develop products,
-              launch on Amazon, and expand across global marketplaces with practical strategy and execution.
+              launch on Amazon, and expand across 21 Amazon marketplaces with practical strategy and execution.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]">
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" /></a>
+                <Link to="/contact">Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 hover:bg-white/10">
                 <Link to="/services">Explore Services</Link>
@@ -85,7 +123,7 @@ function HomePage() {
                   <Star key={i} className="h-4 w-4 fill-[oklch(0.82_0.17_75)] text-[oklch(0.82_0.17_75)]" />
                 ))}
               </div>
-              <span>Trusted by 500+ brands across 21 marketplaces</span>
+              <span>Trusted by 500+ brands across 21 Amazon marketplaces</span>
             </div>
           </div>
 
@@ -110,9 +148,11 @@ function HomePage() {
       <Section className="!py-14">
         <div className="grid gap-8 rounded-2xl border border-white/10 bg-white/[0.02] px-8 py-10 md:grid-cols-4 backdrop-blur-sm">
           {stats.map((s) => (
-            <div key={s.v} className="text-center md:text-left">
-              <p className="font-display numeral text-5xl text-brand-gradient font-bold">{s.k}</p>
-              <p className="mt-2 text-sm text-muted-foreground">{s.v}</p>
+            <div key={s.label} className="text-center md:text-left">
+              <p className="font-display numeral text-5xl text-brand-gradient font-bold">
+                <CountUp value={s.value} suffix={s.suffix} />
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
             </div>
           ))}
         </div>
@@ -128,63 +168,76 @@ function HomePage() {
           <TrackCard
             label="Track A"
             title="Brand Building"
-            desc="Logo, identity, packaging, product content, website and brand strategy."
+            desc="Logo, website, packaging, digital marketing and UAE company setup."
             services={trackAServices}
             href="/services"
           />
           <TrackCard
             label="Track B"
             title="Amazon Growth"
-            desc="Sourcing, listing SEO, launch, PPC, DSP, creative and account operations."
+            desc="Sourcing, private label, wholesale, brand registry and brand launch."
             services={trackBServices}
             href="/services"
           />
         </div>
       </Section>
 
-      {/* Brand factory process */}
+      {/* Ecomtik Brand Factory — 5 stages */}
       <Section
-        eyebrow="From idea to global brand"
-        title="A brand factory built for global growth."
-        intro="Ideas become products, products become brands, and brands become businesses that scale across 21 marketplaces. Here's the assembly line."
+        eyebrow="Ecomtik Brand Factory"
+        title="From idea to global brand in five stages."
+        intro="One assembly line, five stages, one accountable team. Every brand we build moves through the same disciplined process."
       >
-        <div className="group relative rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)]">
-          <img
-            src={processImg.url}
-            alt="Ecomtik brand creation process — from idea to 3D modeling, packaging, manufacturing and global distribution"
-            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 grid grid-cols-2 gap-4 md:grid-cols-6">
-            {[
-              "Idea",
-              "3D Design",
-              "Packaging",
-              "Manufacturing",
-              "Amazon Listing",
-              "Global Launch",
-            ].map((step, i) => (
-              <div key={step} className="rounded-lg border border-[oklch(0.72_0.18_55)]/30 bg-black/50 backdrop-blur-md px-3 py-2 text-center text-xs font-semibold">
-                <span className="text-[oklch(0.82_0.17_75)]">0{i + 1}.</span> {step}
-              </div>
-            ))}
-          </div>
+        <div className="grid gap-4 md:grid-cols-5">
+          {factoryStages.map((s) => (
+            <div
+              key={s.n}
+              className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.2)] hover:-translate-y-1"
+            >
+              <span className="grid h-11 w-11 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)] transition-transform group-hover:scale-110 group-hover:rotate-6">
+                <s.Icon className="h-5 w-5" />
+              </span>
+              <p className="mt-4 font-mono text-xs text-[oklch(0.82_0.17_75)]">{s.n}</p>
+              <h3 className="mt-1 text-lg font-semibold" style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}>{s.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Who We Help */}
+      <Section
+        eyebrow="Who we help"
+        title="Built for founders, sellers and expansion teams."
+        intro="Whether you're starting from a blank page or already trading in five markets, we plug into where you are."
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {audiences.map((a) => (
+            <div
+              key={a.title}
+              className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.2)] hover:-translate-y-1"
+            >
+              <span className="grid h-11 w-11 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)] transition-transform group-hover:scale-110 group-hover:rotate-6">
+                <a.Icon className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 text-lg font-semibold" style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}>{a.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{a.desc}</p>
+            </div>
+          ))}
         </div>
       </Section>
 
       {/* Marketplaces */}
       <Section
-        eyebrow="21 Marketplaces"
+        eyebrow="21 Amazon Marketplaces"
         title="Global reach, one operating team."
-        intro="From Amazon.ae to Amazon.jp, we manage your brand across five regions with local content, tax and logistics."
+        intro="From Amazon.ae to Amazon.jp, we manage your brand across global marketplaces with local content, tax and logistics."
       >
         <div className="grid gap-8 lg:grid-cols-5 items-center">
           <div className="lg:col-span-2 relative rounded-3xl overflow-hidden border border-white/10">
             <img
               src={globeImg.url}
-              alt="Global marketplace network connecting Amazon storefronts across five regions"
+              alt="Global marketplace network connecting Amazon storefronts worldwide"
               className="w-full h-auto object-cover"
               loading="lazy"
               decoding="async"
@@ -193,32 +246,72 @@ function HomePage() {
           </div>
           <div className="lg:col-span-3 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
             {marketplacesByRegion.map((r) => (
-              <div key={r.region} className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.15)] hover:-translate-y-1">
+              <Link
+                key={r.region}
+                to="/marketplaces"
+                hash={regionAnchors[r.region]}
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.2)] hover:-translate-y-1"
+              >
                 <div className="flex items-center gap-2">
-                  <Globe2 className="h-4 w-4 text-[oklch(0.82_0.17_75)]" />
+                  <Globe2 className="h-4 w-4 text-[oklch(0.82_0.17_75)] transition-transform group-hover:rotate-12" />
                   <p className="eyebrow text-[10px]">{r.region}</p>
                 </div>
                 <p className="mt-2 font-display numeral text-2xl font-bold">{r.items.length}</p>
                 <ul className="mt-3 space-y-1 text-xs text-muted-foreground">
                   {r.items.slice(0, 3).map((m) => (
                     <li key={m.slug}>
-                      <Link to={`/marketplaces/${m.slug}`} className="hover:text-foreground">
-                        <span className="mr-1">{m.flag}</span>{m.name}
-                      </Link>
+                      <span className="mr-1">{m.flag}</span>{m.name}
                     </li>
                   ))}
                   {r.items.length > 3 && (
                     <li className="text-[11px]">+{r.items.length - 3} more</li>
                   )}
                 </ul>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
         <div className="mt-10 text-center">
           <Button asChild variant="outline" size="lg" className="border-white/15 bg-white/5 hover:bg-white/10">
-            <Link to="/marketplaces">Explore all {marketplaces.length} marketplaces <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Link to="/marketplaces">Explore all {marketplaces.length} Amazon marketplaces <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </Button>
+        </div>
+      </Section>
+
+      {/* Trusted By Growing Brands */}
+      <Section
+        eyebrow="Trusted by growing brands"
+        title="Real teams, real results."
+        intro="A snapshot of what founders and operators say after working with us."
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <figure
+              key={t.author + t.brand}
+              className="group flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.2)] hover:-translate-y-1"
+            >
+              <Quote className="h-6 w-6 text-[oklch(0.82_0.17_75)]" />
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed">"{t.quote}"</blockquote>
+              <figcaption className="mt-6 border-t border-white/5 pt-4 text-xs text-muted-foreground">
+                <span className="block font-semibold text-foreground">{t.author}</span>
+                {t.brand}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <p className="eyebrow text-[10px] text-center">Brand proof</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-sm font-semibold uppercase tracking-widest text-muted-foreground/70">
+            <span>Aurelia Beauty</span>
+            <span>·</span>
+            <span>Nomad Coffee</span>
+            <span>·</span>
+            <span>Kayan Home</span>
+            <span>·</span>
+            <span>Sirius Supplements</span>
+            <span>·</span>
+            <span>Palma Kids</span>
+          </div>
         </div>
       </Section>
 
@@ -232,7 +325,7 @@ function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform">
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Book Free Consultation</a>
+              <Link to="/contact">Book Free Consultation</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 hover:bg-white/10">
               <Link to="/services">See services</Link>
@@ -258,7 +351,7 @@ function TrackCard({
   href: string;
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_40px_oklch(0.72_0.18_55/0.15)] hover:-translate-y-1">
+    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_40px_oklch(0.72_0.18_55/0.2)] hover:-translate-y-1">
       <div className="flex items-start justify-between">
         <div>
           <p className="eyebrow">{label}</p>
