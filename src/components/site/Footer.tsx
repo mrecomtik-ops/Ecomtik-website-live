@@ -113,7 +113,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/5 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} {site.legal}. All rights reserved.</p>
-          <p>Dubai · Riyadh · London</p>
+          <p>Global Brand Building &amp; Amazon Growth Agency</p>
         </div>
       </div>
     </footer>

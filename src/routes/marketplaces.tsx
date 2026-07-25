@@ -11,11 +11,11 @@ export const Route = createFileRoute("/marketplaces")({
       {
         name: "description",
         content:
-          "Launch and scale your brand across 21 global Amazon marketplaces — from Amazon.ae and Amazon.sa to Amazon.com, Amazon.jp and beyond. Local pricing, tax and creative from Ecomtik.",
+          "Launch and scale your brand across 21 Amazon marketplaces — from Amazon.ae and Amazon.sa to Amazon.com, Amazon.jp and beyond. Local pricing, tax and creative from Ecomtik.",
       },
       { name: "keywords", content: "Amazon global marketplaces, Amazon international expansion, sell on Amazon UAE, sell on Amazon Saudi Arabia, Amazon Europe launch" },
       { property: "og:title", content: "21 Amazon Marketplaces | Ecomtik" },
-      { property: "og:description", content: "Global Amazon coverage — 21 marketplaces, five regions, one operating team." },
+      { property: "og:description", content: "Global Amazon coverage — 21 Amazon marketplaces, one operating team." },
       { property: "og:url", content: "/marketplaces" },
     ],
     links: [{ rel: "canonical", href: "/marketplaces" }],
@@ -23,19 +23,27 @@ export const Route = createFileRoute("/marketplaces")({
   component: MarketplacesPage,
 });
 
+const regionSlugs: Record<string, string> = {
+  "GCC & MENA": "gcc-mena",
+  "Europe": "europe",
+  "North America": "north-america",
+  "Asia Pacific": "asia-pacific",
+  "Latin America": "latin-america",
+};
+
 function MarketplacesPage() {
   return (
     <>
       <PageHero
-        eyebrow={`${marketplaces.length} marketplaces`}
+        eyebrow={`${marketplaces.length} Amazon marketplaces`}
         title="One team. Every Amazon marketplace worth being on."
-        description="We operate across 21 marketplaces in five regions — with local content, tax, logistics and creative. Pick a market to see how we launch there."
+        description="We operate across 21 Amazon marketplaces globally — with local content, tax, logistics and creative. Pick a market to see how we launch there."
       />
 
       <Section className="!pt-24">
         <div className="space-y-16">
           {marketplacesByRegion.map((r) => (
-            <div key={r.region}>
+            <div key={r.region} id={regionSlugs[r.region]} className="scroll-mt-28">
               <div className="flex items-baseline justify-between">
                 <div>
                   <p className="eyebrow">{r.region}</p>
