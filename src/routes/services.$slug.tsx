@@ -149,7 +149,7 @@ function ServiceDetailPage() {
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
               <h2 className="text-3xl md:text-4xl">Ready to talk about {s.title.toLowerCase()}?</h2>
-              <p className="mt-3 text-muted-foreground">Send us your brief. We reply within two business days with an initial point of view.</p>
+              <p className="mt-3 text-muted-foreground">Send us your brief. We usually respond within one business day with an initial point of view.</p>
             </div>
             <div className="flex md:justify-end">
               <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90">
