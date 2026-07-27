@@ -117,8 +117,8 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2.5 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground"
-                activeProps={{ className: "bg-white/5 text-foreground" }}
+                className="rounded-full px-3 py-2.5 text-sm font-semibold text-muted-foreground transition-all duration-300 hover:bg-[oklch(0.72_0.18_55)]/10 hover:text-foreground"
+                activeProps={{ className: "bg-brand-gradient !text-[oklch(0.15_0.02_265)] shadow-[0_0_18px_oklch(0.72_0.18_55/0.4)]" }}
                 activeOptions={{ exact: item.to === "/" }}
               >
                 {item.label}
@@ -175,8 +175,11 @@ function HeaderLink({ to, children }: { to: string; children: React.ReactNode })
   return (
     <Link
       to={to}
-      className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:text-foreground hover:bg-white/5"
-      activeProps={{ className: "bg-white/5 text-foreground ring-1 ring-[oklch(0.72_0.18_55)]/50 shadow-[0_0_15px_oklch(0.72_0.18_55/0.25)]" }}
+      className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all duration-300 hover:text-foreground hover:bg-[oklch(0.72_0.18_55)]/10 hover:ring-1 hover:ring-[oklch(0.72_0.18_55)]/30 hover:shadow-[0_0_18px_oklch(0.72_0.18_55/0.2)] hover:backdrop-blur-sm"
+      activeProps={{
+        className:
+          "bg-brand-gradient !text-[oklch(0.15_0.02_265)] shadow-[0_0_22px_oklch(0.72_0.18_55/0.55)] hover:!bg-brand-gradient hover:!text-[oklch(0.15_0.02_265)]",
+      }}
       activeOptions={{ exact: to === "/" }}
       style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}
     >
@@ -190,7 +193,8 @@ function MegaTrigger({ label, children, wide }: { label: string; children: React
     <div className="group relative">
       <button
         type="button"
-        className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground"
+        className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all duration-300 group-hover:text-foreground group-hover:bg-[oklch(0.72_0.18_55)]/10 group-hover:ring-1 group-hover:ring-[oklch(0.72_0.18_55)]/30 group-hover:shadow-[0_0_18px_oklch(0.72_0.18_55/0.2)]"
+        style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}
       >
         {label}
         <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
