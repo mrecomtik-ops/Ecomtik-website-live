@@ -26,7 +26,7 @@ import {
   Factory,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Section } from "@/components/site/Section";
+
 import { GridBg } from "@/components/site/GridBg";
 import { CountUp } from "@/components/site/CountUp";
 import { trackAServices, trackBServices } from "@/data/services";
