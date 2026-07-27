@@ -323,7 +323,79 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* CTA */}
+      {/* Free Demo Website */}
+      <Section>
+        <div className="relative overflow-hidden rounded-3xl border border-[oklch(0.72_0.18_55)]/25 bg-[oklch(0.13_0.02_265)]/60 backdrop-blur-xl p-8 md:p-14 shadow-[0_30px_80px_-30px_oklch(0.72_0.18_55/0.35)]">
+          <div
+            className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full"
+            style={{ background: "radial-gradient(circle, oklch(0.72 0.18 55 / 0.35), transparent 70%)" }}
+          />
+          <div
+            className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full"
+            style={{ background: "radial-gradient(circle, oklch(0.82 0.17 75 / 0.25), transparent 70%)" }}
+          />
+          <div className="relative grid gap-10 md:grid-cols-2 md:items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.72_0.18_55)]/30 bg-[oklch(0.72_0.18_55)]/10 px-3 py-1 text-[11px] font-semibold tracking-widest uppercase text-[oklch(0.82_0.17_75)]">
+                <Monitor className="h-3.5 w-3.5" />
+                Free Website Demo
+              </div>
+              <h2 className="mt-5 text-balance text-3xl md:text-4xl lg:text-5xl font-bold" style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}>
+                See Your Business Online <span className="text-brand-gradient">Before You Commit.</span>
+              </h2>
+              <p className="mt-5 text-muted-foreground leading-relaxed">
+                Share your business requirements with Ecomtik, and we will create a free demo website
+                concept tailored to your brand, industry, and goals. Review the design direction before
+                deciding to continue with the full website.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm">
+                {[
+                  { Icon: Target, text: "Tailored to your business requirements" },
+                  { Icon: PaletteIcon, text: "Designed for your brand and audience" },
+                  { Icon: ShieldCheck, text: "No obligation after reviewing the demo" },
+                ].map(({ Icon, text }) => (
+                  <li key={text} className="flex items-start gap-3">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)]">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="pt-1.5 text-foreground/90">{text}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]"
+                >
+                  <a href={FREE_DEMO_WHATSAPP} target="_blank" rel="noreferrer">
+                    Request Your Free Demo Website <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  Free initial demo concept — not a complete free website.
+                </p>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="relative rounded-3xl overflow-hidden border border-[oklch(0.72_0.18_55)]/30 bg-black/40 shadow-[0_25px_80px_-20px_oklch(0.72_0.18_55/0.45)] animate-[float_6s_ease-in-out_infinite]">
+                <img
+                  src={demoMockup}
+                  alt="Ecomtik free demo website concept — dark themed premium website mockup on a laptop"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={1024}
+                  height={1024}
+                />
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-[oklch(0.82_0.17_75)]/20 rounded-3xl" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+
       <Section align="center" className="!pt-0">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">Ready to build your brand?</p>
