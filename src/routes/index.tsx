@@ -17,6 +17,10 @@ import {
   Building2,
   Globe,
   Quote,
+  Monitor,
+  Target,
+  Palette as PaletteIcon,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
@@ -26,6 +30,10 @@ import { trackAServices, trackBServices } from "@/data/services";
 import { marketplacesByRegion, marketplaces } from "@/data/marketplaces";
 import heroImg from "@/assets/ecomtik-brand-factory-hero.webp.asset.json";
 import globeImg from "@/assets/ecomtik-global-marketplace-network.webp.asset.json";
+import demoMockup from "@/assets/ecomtik-demo-website-mockup.webp";
+
+const FREE_DEMO_WHATSAPP =
+  "https://wa.me/971561677408?text=Hello%20Ecomtik%2C%20I%20would%20like%20to%20request%20a%20free%20demo%20website%20for%20my%20business.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
