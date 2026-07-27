@@ -193,7 +193,8 @@ function MegaTrigger({ label, children, wide }: { label: string; children: React
     <div className="group relative">
       <button
         type="button"
-        className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground"
+        className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all duration-300 group-hover:text-foreground group-hover:bg-[oklch(0.72_0.18_55)]/10 group-hover:ring-1 group-hover:ring-[oklch(0.72_0.18_55)]/30 group-hover:shadow-[0_0_18px_oklch(0.72_0.18_55/0.2)]"
+        style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}
       >
         {label}
         <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
