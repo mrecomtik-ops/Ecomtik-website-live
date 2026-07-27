@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "b4b80bbb-6b21-4287-9b95-b881fcd1eeb5",
-  "project_id": "34eddd65-3e61-4fdb-a191-689056859c8a",
-  "url": "/__l5e/assets-v1/b4b80bbb-6b21-4287-9b95-b881fcd1eeb5/ecomtik-logo.png",
-  "r2_key": "a/v1/34eddd65-3e61-4fdb-a191-689056859c8a/b4b80bbb-6b21-4287-9b95-b881fcd1eeb5/ecomtik-logo.png",
-  "original_filename": "ecomtik-logo.png",
-  "size": 445657,
   "content_type": "image/png",
-  "created_at": "2026-07-18T09:30:49Z"
+  "created_at": "2026-07-18T09:30:49Z",
+  "original_filename": "ecomtik-logo.png",
+  "project_id": "9ab22a9d-bfe6-4d67-b8db-9cd1ed957d32",
+  "r2_key": "a/v1/9ab22a9d-bfe6-4d67-b8db-9cd1ed957d32/b4b80bbb-6b21-4287-9b95-b881fcd1eeb5/ecomtik-logo.png",
+  "size": 445657,
+  "url": "/__l5e/assets-v1/b4b80bbb-6b21-4287-9b95-b881fcd1eeb5/ecomtik-logo.png",
+  "version": 1
 }

@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "2d95a328-f0d9-4254-a45a-9e7b31137b9e",
-  "project_id": "34eddd65-3e61-4fdb-a191-689056859c8a",
-  "url": "/__l5e/assets-v1/2d95a328-f0d9-4254-a45a-9e7b31137b9e/ecomtik-brand-factory-hero.webp",
-  "r2_key": "a/v1/34eddd65-3e61-4fdb-a191-689056859c8a/2d95a328-f0d9-4254-a45a-9e7b31137b9e/ecomtik-brand-factory-hero.webp",
-  "original_filename": "ecomtik-brand-factory-hero.webp",
-  "size": 1905907,
   "content_type": "image/png",
-  "created_at": "2026-07-24T11:29:57Z"
+  "created_at": "2026-07-24T11:29:57Z",
+  "original_filename": "ecomtik-brand-factory-hero.webp",
+  "project_id": "9ab22a9d-bfe6-4d67-b8db-9cd1ed957d32",
+  "r2_key": "a/v1/9ab22a9d-bfe6-4d67-b8db-9cd1ed957d32/2d95a328-f0d9-4254-a45a-9e7b31137b9e/ecomtik-brand-factory-hero.webp",
+  "size": 1905907,
+  "url": "/__l5e/assets-v1/2d95a328-f0d9-4254-a45a-9e7b31137b9e/ecomtik-brand-factory-hero.webp",
+  "version": 1
 }
