@@ -5,7 +5,7 @@ import {
   Globe2,
   Sparkles,
   Lightbulb,
-  Palette,
+  Palette as PaletteIcon,
   Hammer,
   Rocket,
   BarChart3,
