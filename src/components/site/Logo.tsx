@@ -4,19 +4,17 @@ export function Logo({ withWordmark = true }: { withWordmark?: boolean }) {
   return (
     <span className="flex items-center gap-3">
       <span
-        className="inline-flex items-center justify-center rounded-xl overflow-hidden px-2.5 py-1.5 h-[38px] md:h-[48px]"
+        className="inline-flex items-center justify-center rounded-2xl bg-white overflow-hidden h-[44px] w-[44px] md:h-[54px] md:w-[54px] p-1.5 transition-all duration-300"
         style={{
-          background: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(245,126,3,0.35)",
-          backdropFilter: "blur(12px)",
-          boxShadow: "0 0 24px rgba(245,126,3,0.18)",
+          border: "1.5px solid rgba(245,126,3,0.55)",
+          boxShadow:
+            "0 0 20px rgba(245,126,3,0.35), 0 0 40px rgba(245,126,3,0.15), inset 0 0 0 1px rgba(255,255,255,0.9)",
         }}
       >
         <img
           src={logo.url}
           alt="Ecomtik"
-          className="block h-full w-auto max-h-full object-contain"
-          style={{ height: "100%", width: "auto" }}
+          className="block h-full w-full object-contain"
         />
       </span>
       {withWordmark && (
