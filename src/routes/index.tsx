@@ -3,7 +3,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Globe2,
-  Check,
   Sparkles,
   Lightbulb,
   Palette,
