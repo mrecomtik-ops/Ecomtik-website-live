@@ -117,8 +117,8 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2.5 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground"
-                activeProps={{ className: "bg-white/5 text-foreground" }}
+                className="rounded-full px-3 py-2.5 text-sm font-semibold text-muted-foreground transition-all duration-300 hover:bg-[oklch(0.72_0.18_55)]/10 hover:text-foreground"
+                activeProps={{ className: "bg-brand-gradient !text-[oklch(0.15_0.02_265)] shadow-[0_0_18px_oklch(0.72_0.18_55/0.4)]" }}
                 activeOptions={{ exact: item.to === "/" }}
               >
                 {item.label}
