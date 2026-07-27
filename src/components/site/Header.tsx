@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
@@ -16,14 +16,31 @@ const primary = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<null | "services" | "marketplaces">(null);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-background/70 backdrop-blur-xl">
-      <div className="container-page flex h-16 items-center justify-between gap-4">
+    <header
+      className="sticky top-0 z-40 border-b border-white/5 backdrop-blur-xl transition-all duration-300"
+      style={{
+        backgroundColor: "rgba(7,9,14,0.85)",
+        boxShadow: scrolled
+          ? "0 1px 0 oklch(0.72 0.18 55 / 0.35), 0 8px 30px -12px rgba(0,0,0,0.6)"
+          : "0 1px 0 oklch(0.72 0.18 55 / 0.18)",
+      }}
+    >
+      <div className={`container-page flex items-center justify-between gap-4 transition-all duration-300 ${scrolled ? "h-16" : "h-20"}`}>
         <Link to="/" className="shrink-0" onClick={() => setOpen(false)}>
-          <Logo />
+          <Logo size={scrolled ? "md" : "lg"} />
         </Link>
+
 
         <nav className="hidden items-center gap-1 lg:flex">
           <HeaderLink to="/">Home</HeaderLink>

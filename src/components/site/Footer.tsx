@@ -23,30 +23,34 @@ const socials = [
 export function Footer() {
   return (
     <footer className="relative mt-24 border-t border-white/5 bg-[oklch(0.11_0.015_265)]">
+      <div
+        className="absolute inset-x-0 top-0 h-px"
+        style={{ background: "linear-gradient(90deg, transparent, oklch(0.76 0.16 60 / 0.9), oklch(0.86 0.14 78 / 0.9), transparent)" }}
+      />
       <div className="container-page py-16">
-        <div className="grid gap-10 md:grid-cols-12">
+        <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <Link to="/">
-              <Logo />
+              <Logo size="lg" />
             </Link>
-            <p className="mt-4 max-w-sm text-sm text-muted-foreground">
+            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
               A Dubai-based brand builder and Amazon growth agency operating across
               21 global marketplaces. From idea to established brand — one team, one plan.
             </p>
-            <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
+            <ul className="mt-6 space-y-2.5 text-[15px] text-muted-foreground">
+              <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 text-primary" />
                 <span>{site.address.line1}, {site.address.line2}, {site.address.country}</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" /> <a href={`mailto:${site.email}`}>{site.email}</a>
+              <li className="flex items-center gap-2.5">
+                <Mail className="h-4 w-4 text-primary" /> <a href={`mailto:${site.email}`} className="hover:text-foreground">{site.email}</a>
               </li>
-              <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2.5">
                 <MessageCircle className="h-4 w-4 text-primary" />
-                <a href={whatsappUrl()} target="_blank" rel="noreferrer">WhatsApp {site.whatsappDisplay}</a>
+                <a href={whatsappUrl()} target="_blank" rel="noreferrer" className="hover:text-foreground">WhatsApp {site.whatsappDisplay}</a>
               </li>
             </ul>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-7 flex gap-3">
               {socials.map(({ href, label, Icon }) => (
                 <a
                   key={label}
@@ -54,13 +58,14 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all hover:text-[oklch(0.15_0.02_265)] hover:bg-brand-gradient hover:border-transparent hover:shadow-[0_0_20px_oklch(0.72_0.18_55/0.5)] hover:scale-110"
+                  className="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all hover:text-[oklch(0.15_0.02_265)] hover:bg-brand-gradient hover:border-transparent hover:shadow-[0_0_24px_oklch(0.72_0.18_55/0.55)] hover:scale-110"
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-[18px] w-[18px]" />
                 </a>
               ))}
             </div>
           </div>
+
 
           <div className="md:col-span-2">
             <h4 className="eyebrow text-[10px]">Brand Building</h4>
