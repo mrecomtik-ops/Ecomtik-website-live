@@ -18,8 +18,8 @@ export const site = {
   ],
   socials: {
     instagram: "https://www.instagram.com/ecomtik/",
-    tiktok: "https://www.tiktok.com/@ecomtikofficial",
-    facebook: "https://www.facebook.com/share/1D6Preefkm/?mibextid=wwXIfr",
+    tiktok: "https://www.tiktok.com/@ecomtikservices",
+    facebook: "https://www.facebook.com/profile.php?id=61591697604837",
   },
   stats: {
     brands: "500+",
