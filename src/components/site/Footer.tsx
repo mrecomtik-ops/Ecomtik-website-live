@@ -27,30 +27,30 @@ export function Footer() {
         className="absolute inset-x-0 top-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, oklch(0.76 0.16 60 / 0.9), oklch(0.86 0.14 78 / 0.9), transparent)" }}
       />
-      <div className="container-page py-16">
-        <div className="grid gap-12 md:grid-cols-12">
+      <div className="container-page py-20">
+        <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-4">
             <Link to="/">
               <Logo size="lg" />
             </Link>
-            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-sm text-[17px] leading-relaxed text-muted-foreground">
               A Dubai-based brand builder and Amazon growth agency operating across
               21 global marketplaces. From idea to established brand — one team, one plan.
             </p>
-            <ul className="mt-6 space-y-2.5 text-[15px] text-muted-foreground">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 text-primary" />
+            <ul className="mt-7 space-y-3 text-[16px] text-muted-foreground">
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-[18px] w-[18px] text-primary" />
                 <span>{site.address.line1}, {site.address.line2}, {site.address.country}</span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 text-primary" /> <a href={`mailto:${site.email}`} className="hover:text-foreground">{site.email}</a>
+              <li className="flex items-center gap-3">
+                <Mail className="h-[18px] w-[18px] text-primary" /> <a href={`mailto:${site.email}`} className="hover:text-foreground">{site.email}</a>
               </li>
-              <li className="flex items-center gap-2.5">
-                <MessageCircle className="h-4 w-4 text-primary" />
+              <li className="flex items-center gap-3">
+                <MessageCircle className="h-[18px] w-[18px] text-primary" />
                 <a href={whatsappUrl()} target="_blank" rel="noreferrer" className="hover:text-foreground">WhatsApp {site.whatsappDisplay}</a>
               </li>
             </ul>
-            <div className="mt-7 flex gap-3">
+            <div className="mt-8 flex gap-3.5">
               {socials.map(({ href, label, Icon }) => (
                 <a
                   key={label}
@@ -58,9 +58,9 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all hover:text-[oklch(0.15_0.02_265)] hover:bg-brand-gradient hover:border-transparent hover:shadow-[0_0_24px_oklch(0.72_0.18_55/0.55)] hover:scale-110"
+                  className="grid h-14 w-14 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all hover:text-[oklch(0.15_0.02_265)] hover:bg-brand-gradient hover:border-transparent hover:shadow-[0_0_24px_oklch(0.72_0.18_55/0.55)] hover:scale-110"
                 >
-                  <Icon className="h-[18px] w-[18px]" />
+                  <Icon className="h-[22px] w-[22px]" />
                 </a>
               ))}
             </div>
@@ -68,8 +68,8 @@ export function Footer() {
 
 
           <div className="md:col-span-2">
-            <h4 className="eyebrow text-[10px]">Brand Building</h4>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <h4 className="eyebrow text-[11px]">Brand Building</h4>
+            <ul className="mt-4 space-y-2.5 text-[15px] text-muted-foreground">
               {trackAServices.map((s) => (
                 <li key={s.slug}>
                   <Link to={`/services/${s.slug}`} className="hover:text-foreground">{s.title}</Link>
@@ -79,8 +79,8 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="eyebrow text-[10px]">Amazon Growth</h4>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <h4 className="eyebrow text-[11px]">Amazon Growth</h4>
+            <ul className="mt-4 space-y-2.5 text-[15px] text-muted-foreground">
               {trackBServices.map((s) => (
                 <li key={s.slug}>
                   <Link to={`/services/${s.slug}`} className="hover:text-foreground">{s.title}</Link>
@@ -90,8 +90,8 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="eyebrow text-[10px]">Company</h4>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <h4 className="eyebrow text-[11px]">Company</h4>
+            <ul className="mt-4 space-y-2.5 text-[15px] text-muted-foreground">
               <li><Link to="/" className="hover:text-foreground">Home</Link></li>
               <li><Link to="/about" className="hover:text-foreground">About</Link></li>
               <li><Link to="/services" className="hover:text-foreground">Services</Link></li>
@@ -102,8 +102,8 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="eyebrow text-[10px]">Top markets</h4>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <h4 className="eyebrow text-[11px]">Top markets</h4>
+            <ul className="mt-4 space-y-2.5 text-[15px] text-muted-foreground">
               {marketplacesByRegion[0].items.slice(0, 3).map((m) => (
                 <li key={m.slug}>
                   <Link to={`/marketplaces/${m.slug}`} className="hover:text-foreground">{m.flag} {m.name}</Link>

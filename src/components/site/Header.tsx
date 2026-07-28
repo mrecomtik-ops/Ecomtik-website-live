@@ -111,7 +111,7 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button asChild size="sm" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform">
+          <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold text-[15px] px-6 py-2.5 hover:opacity-90 hover:scale-105 transition-transform">
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Book Free Consultation</a>
           </Button>
         </div>
@@ -192,7 +192,7 @@ function HeaderLink({ to, children }: { to: string; children: React.ReactNode })
   return (
     <Link
       to={to}
-      className="rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all duration-300 hover:text-foreground hover:bg-[oklch(0.72_0.18_55)]/10 hover:ring-1 hover:ring-[oklch(0.72_0.18_55)]/30 hover:shadow-[0_0_18px_oklch(0.72_0.18_55/0.2)] hover:backdrop-blur-sm"
+      className="rounded-full px-[18px] py-2.5 text-[15px] font-semibold text-muted-foreground transition-all duration-300 hover:text-foreground hover:bg-[oklch(0.72_0.18_55)]/10 hover:ring-1 hover:ring-[oklch(0.72_0.18_55)]/30 hover:shadow-[0_0_18px_oklch(0.72_0.18_55/0.2)] hover:backdrop-blur-sm"
       activeProps={{
         className:
           "bg-brand-gradient !text-[oklch(0.15_0.02_265)] shadow-[0_0_22px_oklch(0.72_0.18_55/0.55)] hover:!bg-brand-gradient hover:!text-[oklch(0.15_0.02_265)]",
@@ -210,7 +210,7 @@ function MegaTrigger({ label, children, wide }: { label: string; children: React
     <div className="group relative">
       <button
         type="button"
-        className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-all duration-300 group-hover:text-foreground group-hover:bg-[oklch(0.72_0.18_55)]/10 group-hover:ring-1 group-hover:ring-[oklch(0.72_0.18_55)]/30 group-hover:shadow-[0_0_18px_oklch(0.72_0.18_55/0.2)]"
+        className="inline-flex items-center gap-1 rounded-full px-[18px] py-2.5 text-[15px] font-semibold text-muted-foreground transition-all duration-300 group-hover:text-foreground group-hover:bg-[oklch(0.72_0.18_55)]/10 group-hover:ring-1 group-hover:ring-[oklch(0.72_0.18_55)]/30 group-hover:shadow-[0_0_18px_oklch(0.72_0.18_55/0.2)]"
         style={{ fontFamily: "Sora, ui-sans-serif, system-ui" }}
       >
         {label}
