@@ -118,19 +118,19 @@ function HomePage() {
               BUILD BRANDS.<br />
               <span className="text-brand-gradient">SCALE GLOBALLY.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-xl text-[19px] leading-[1.65] text-muted-foreground">
               Ecomtik helps entrepreneurs and businesses create powerful brands, develop products,
               launch on Amazon, and expand across 21 Amazon marketplaces with practical strategy and execution.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]">
+              <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold text-[16px] px-7 py-6 hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]">
                 <Link to="/contact">Book Free Consultation <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 hover:bg-white/10">
+              <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 text-[16px] px-7 py-6 hover:bg-white/10">
                 <Link to="/services">Explore Services</Link>
               </Button>
             </div>
-            <p className="mt-8 text-sm text-muted-foreground/90">
+            <p className="mt-8 text-[15px] text-muted-foreground/95">
               Practical guidance. Honest consultation. Built in Dubai for global brands.
             </p>
           </div>
@@ -215,52 +215,53 @@ function HomePage() {
             <span className="pointer-events-none absolute left-4 bottom-4 h-6 w-6 border-l-2 border-b-2 border-[oklch(0.82_0.17_75)]/60" />
             <span className="pointer-events-none absolute right-4 bottom-4 h-6 w-6 border-r-2 border-b-2 border-[oklch(0.82_0.17_75)]/60" />
 
-            <div className="relative grid gap-12 md:grid-cols-2 md:items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.72_0.18_55)]/30 bg-[oklch(0.72_0.18_55)]/10 px-3 py-1 text-[11px] font-semibold tracking-widest uppercase text-[oklch(0.82_0.17_75)]">
+            <div className="relative grid gap-12 md:grid-cols-12 md:items-center">
+              <div className="md:col-span-7">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.72_0.18_55)]/30 bg-[oklch(0.72_0.18_55)]/10 px-3 py-1 text-[12px] font-semibold tracking-widest uppercase text-[oklch(0.82_0.17_75)]">
                   <Monitor className="h-3.5 w-3.5" />
                   Free Website Demo
                 </div>
                 <h2 className="mt-5 text-balance text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1]" style={{ fontFamily: "Sora" }}>
-                  See Your Business Online <span className="text-brand-gradient">Before You Commit.</span>
+                  See Your Business Online<br />
+                  <span className="text-brand-gradient">Before You Commit.</span>
                 </h2>
-                <p className="mt-5 text-[16px] leading-relaxed text-muted-foreground">
+                <p className="mt-6 text-[18px] leading-[1.7] text-muted-foreground">
                   Share your business requirements with Ecomtik, and we will create a free initial website
                   demo concept tailored to your brand, industry and goals. Review the design direction before
                   deciding whether to continue with the complete website.
                 </p>
-                <ul className="mt-6 space-y-3 text-[15px]">
+                <ul className="mt-7 space-y-3.5 text-[17px]">
                   {[
                     { Icon: Target, text: "Tailored to your business requirements" },
                     { Icon: PaletteIcon, text: "Designed around your brand and target audience" },
                     { Icon: ShieldCheck, text: "No obligation after reviewing the initial demo" },
                   ].map(({ Icon, text }) => (
                     <li key={text} className="flex items-start gap-3">
-                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)]">
-                        <Icon className="h-4 w-4" />
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)]">
+                        <Icon className="h-[18px] w-[18px]" />
                       </span>
-                      <span className="pt-1.5 text-foreground/90">{text}</span>
+                      <span className="pt-1.5 text-foreground/95">{text}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]">
+                <div className="mt-9 flex flex-wrap gap-3">
+                  <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold text-[16px] px-7 py-6 hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]">
                     <a href={FREE_DEMO_WHATSAPP} target="_blank" rel="noreferrer">
                       Request Your Free Demo Website <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 hover:bg-white/10">
+                  <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 text-[16px] px-7 py-6 hover:bg-white/10">
                     <a href={FREE_DEMO_WHATSAPP} target="_blank" rel="noreferrer">
                       <MessageSquare className="mr-2 h-4 w-4" /> Discuss Your Website
                     </a>
                   </Button>
                 </div>
-                <p className="mt-4 text-[13px] text-muted-foreground">
-                  Tell us about your business, preferred style, required pages and website goals. This is a free initial demo concept — not a complete free website.
+                <p className="mt-5 rounded-lg border border-[oklch(0.72_0.18_55)]/25 bg-[oklch(0.72_0.18_55)]/8 px-4 py-3 text-[14px] leading-relaxed text-foreground/85">
+                  <strong className="text-[oklch(0.85_0.16_75)]">Note:</strong> This is a free initial demo concept, not a complete free website.
                 </p>
               </div>
 
-              <div className="relative">
+              <div className="md:col-span-5 relative">
                 {/* orange platform */}
                 <div className="pointer-events-none absolute -bottom-6 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-full blur-2xl" style={{ background: "radial-gradient(ellipse, oklch(0.72 0.18 55 / 0.55), transparent 70%)" }} />
                 <div className="relative rounded-3xl overflow-hidden border border-[oklch(0.72_0.18_55)]/30 bg-black/40 shadow-[0_25px_80px_-20px_oklch(0.72_0.18_55/0.45)] animate-float">
@@ -376,14 +377,31 @@ function HomePage() {
             {/* featured */}
             <div className="group relative overflow-hidden rounded-2xl border border-[oklch(0.72_0.18_55)]/30 bg-gradient-to-br from-[oklch(0.72_0.18_55)]/10 via-[oklch(0.13_0.02_265)]/70 to-[oklch(0.13_0.02_265)]/40 p-8 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2 transition-all hover:border-[oklch(0.72_0.18_55)]/60">
               <div className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full" style={{ background: "radial-gradient(circle, oklch(0.72 0.18 55 / 0.35), transparent 70%)" }} />
-              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-brand-gradient text-[oklch(0.15_0.02_265)] transition-transform group-hover:scale-110">
+              {/* Subtle futuristic brand-building visual: orbital rings + floating brand tokens */}
+              <div className="pointer-events-none absolute inset-0 opacity-70">
+                <div className="absolute right-[8%] bottom-[10%] h-56 w-56">
+                  <div className="absolute inset-0 rounded-full border border-[oklch(0.72_0.18_55)]/25 animate-orbit-slow" />
+                  <div className="absolute inset-6 rounded-full border border-[oklch(0.82_0.17_75)]/20" />
+                  <div className="absolute inset-12 rounded-full border border-[oklch(0.72_0.18_55)]/15" />
+                  <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[oklch(0.82_0.17_75)] shadow-[0_0_14px_oklch(0.82_0.17_75)]" />
+                  <span className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-[oklch(0.72_0.18_55)] shadow-[0_0_12px_oklch(0.72_0.18_55)]" />
+                  <span className="absolute left-2 bottom-6 h-1.5 w-1.5 rounded-full bg-[oklch(0.82_0.17_75)] shadow-[0_0_10px_oklch(0.82_0.17_75)]" />
+                  <div className="absolute inset-0 grid place-items-center">
+                    <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[oklch(0.13_0.02_265)]/80 backdrop-blur-sm border border-[oklch(0.72_0.18_55)]/40 shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]">
+                      <Sparkles className="h-7 w-7 text-[oklch(0.82_0.17_75)]" />
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 blueprint-bg opacity-40" />
+              </div>
+              <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-brand-gradient text-[oklch(0.15_0.02_265)] transition-transform group-hover:scale-110">
                 <User className="h-6 w-6" />
               </span>
-              <h3 className="mt-6 text-2xl md:text-3xl font-bold" style={{ fontFamily: "Sora" }}>First-Time Entrepreneurs</h3>
-              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+              <h3 className="relative mt-6 text-2xl md:text-3xl font-bold" style={{ fontFamily: "Sora" }}>First-Time Entrepreneurs</h3>
+              <p className="relative mt-3 max-w-md text-[16px] leading-relaxed text-muted-foreground">
                 You have a product idea and need a partner who can build the brand, source the product and get it live on Amazon — without losing months in guesswork.
               </p>
-              <div className="mt-6 flex flex-wrap gap-2 text-xs">
+              <div className="relative mt-6 flex flex-wrap gap-2 text-xs">
                 {["Brand identity", "Product sourcing", "Amazon launch", "PPC"].map((t) => (
                   <span key={t} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-muted-foreground">{t}</span>
                 ))}
@@ -396,7 +414,7 @@ function HomePage() {
                   <a.Icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 text-lg font-semibold" style={{ fontFamily: "Sora" }}>{a.title}</h3>
-                <p className="mt-2 text-[14px] text-muted-foreground leading-relaxed">{a.desc}</p>
+                <p className="mt-2 text-[15px] text-muted-foreground leading-relaxed">{a.desc}</p>
               </div>
             ))}
           </div>
@@ -448,17 +466,17 @@ function HomePage() {
                 >
                   <div className="flex items-center gap-2">
                     <Globe2 className="h-4 w-4 text-[oklch(0.82_0.17_75)] transition-transform group-hover:rotate-12" />
-                    <p className="eyebrow text-[10px]">{r.region}</p>
+                    <p className="eyebrow text-[11px]">{r.region}</p>
                   </div>
                   <p className="mt-2 numeral text-3xl font-bold">{r.items.length}</p>
-                  <ul className="mt-3 space-y-1 text-[13px] text-muted-foreground">
+                  <ul className="mt-3 space-y-1.5 text-[14px] text-muted-foreground">
                     {r.items.slice(0, 3).map((m) => (
                       <li key={m.slug}>
                         <span className="mr-1">{m.flag}</span>{m.name}
                       </li>
                     ))}
                     {r.items.length > 3 && (
-                      <li className="text-[12px]">+{r.items.length - 3} more</li>
+                      <li className="text-[13px]">+{r.items.length - 3} more</li>
                     )}
                   </ul>
                 </Link>
@@ -466,7 +484,7 @@ function HomePage() {
             </div>
           </div>
           <div className="mt-10 text-center">
-            <Button asChild variant="outline" size="lg" className="border-white/15 bg-white/5 hover:bg-white/10">
+            <Button asChild variant="outline" size="lg" className="border-white/15 bg-white/5 text-[16px] px-7 py-6 hover:bg-white/10">
               <Link to="/marketplaces">Explore all {marketplaces.length} Amazon marketplaces <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
@@ -493,7 +511,7 @@ function HomePage() {
                   <v.Icon className="h-5 w-5" />
                 </span>
                 <h3 className="relative mt-5 text-lg font-semibold" style={{ fontFamily: "Sora" }}>{v.title}</h3>
-                <p className="relative mt-2 text-[14px] text-muted-foreground leading-relaxed">{v.desc}</p>
+                <p className="relative mt-2 text-[15px] text-muted-foreground leading-relaxed">{v.desc}</p>
                 <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.18_55)]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             ))}
@@ -509,9 +527,9 @@ function HomePage() {
           <div className="absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[oklch(0.72_0.18_55)]/10" />
           <div className="absolute left-1/2 top-1/2 h-[720px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[oklch(0.72_0.18_55)]/5" />
         </div>
-        <div className="container-page relative py-24 md:py-32">
+        <div className="container-page relative py-20 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.72_0.18_55)]/30 bg-[oklch(0.72_0.18_55)]/10 px-3 py-1 text-[11px] font-semibold tracking-widest uppercase text-[oklch(0.82_0.17_75)]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.72_0.18_55)]/30 bg-[oklch(0.72_0.18_55)]/10 px-3 py-1 text-[12px] font-semibold tracking-widest uppercase text-[oklch(0.82_0.17_75)]">
               <Rocket className="h-3.5 w-3.5" />
               Start with a free demo
             </div>
@@ -519,20 +537,20 @@ function HomePage() {
               Let's Build Your Brand, <br className="hidden md:block" />
               <span className="text-brand-gradient">Starting With a Free Demo.</span>
             </h2>
-            <p className="mt-6 text-[17px] leading-relaxed text-muted-foreground">
+            <p className="mt-6 text-[18px] leading-[1.65] text-muted-foreground">
               Share your business requirements and review a tailored website concept before moving forward.
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_40px_oklch(0.72_0.18_55/0.5)]">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold text-[17px] px-8 py-6 hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_40px_oklch(0.72_0.18_55/0.5)]">
                 <a href={FREE_DEMO_WHATSAPP} target="_blank" rel="noreferrer">
                   Get My Free Website Demo <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 backdrop-blur hover:bg-white/10">
+              <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 text-[16px] px-7 py-6 backdrop-blur hover:bg-white/10">
                 <Link to="/services">Explore Services</Link>
               </Button>
             </div>
-            <p className="mt-8 text-[13px] text-muted-foreground">
+            <p className="mt-6 text-[15px] font-medium text-foreground/85">
               Practical guidance. Honest consultation. No obligation.
             </p>
           </div>
