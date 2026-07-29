@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { trackAServices, trackBServices } from "@/data/services";
-import { marketplacesByRegion } from "@/data/marketplaces";
+import { marketplacesByRegion, marketplaceAnchor } from "@/data/marketplaces";
 import { WHATSAPP_URL } from "@/data/site";
 
 const primary = [
