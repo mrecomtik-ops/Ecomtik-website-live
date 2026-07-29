@@ -52,7 +52,7 @@ export function Header() {
                 eyebrow="Track A"
                 title="Brand Building"
                 items={trackAServices.map((s) => ({
-                  to: `/services/${s.slug}`,
+                  slug: s.slug,
                   title: s.title,
                   desc: s.short,
                   Icon: s.icon,
@@ -62,7 +62,7 @@ export function Header() {
                 eyebrow="Track B"
                 title="Amazon Growth"
                 items={trackBServices.map((s) => ({
-                  to: `/services/${s.slug}`,
+                  slug: s.slug,
                   title: s.title,
                   desc: s.short,
                   Icon: s.icon,
@@ -86,8 +86,9 @@ export function Header() {
                     {r.items.map((m) => (
                       <li key={m.slug}>
                         <Link
-                          to={`/marketplaces/${m.slug}`}
-                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                          to="/marketplaces"
+                          hash={marketplaceAnchor[m.slug] ?? m.slug}
+                          className="flex items-center gap-2 rounded-md px-1.5 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.72_0.18_55)] cursor-pointer"
                         >
                           <span>{m.flag}</span>
                           <span>{m.name}</span>
@@ -104,6 +105,7 @@ export function Header() {
               </Link>
             </div>
           </MegaTrigger>
+
 
           <HeaderLink to="/blog">Blog</HeaderLink>
           <HeaderLink to="/about">About</HeaderLink>
