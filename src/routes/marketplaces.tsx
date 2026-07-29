@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
-import { marketplacesByRegion, marketplaces } from "@/data/marketplaces";
+import { marketplacesByRegion, marketplaces, marketplaceAnchor } from "@/data/marketplaces";
 
 export const Route = createFileRoute("/marketplaces")({
   head: () => ({
