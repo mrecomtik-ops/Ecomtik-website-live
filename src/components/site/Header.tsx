@@ -151,13 +151,13 @@ export function Header() {
             >
               <p className="mt-1 px-3 pt-2 text-[10px] uppercase tracking-widest text-muted-foreground">Track A</p>
               {trackAServices.map((s) => (
-                <Link key={s.slug} to={`/services/${s.slug}`} onClick={() => setOpen(false)} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground">
+                <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }} onClick={() => { setOpen(false); setMobileGroup(null); }} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground cursor-pointer">
                   {s.title}
                 </Link>
               ))}
               <p className="mt-1 px-3 pt-2 text-[10px] uppercase tracking-widest text-muted-foreground">Track B</p>
               {trackBServices.map((s) => (
-                <Link key={s.slug} to={`/services/${s.slug}`} onClick={() => setOpen(false)} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground">
+                <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }} onClick={() => { setOpen(false); setMobileGroup(null); }} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground cursor-pointer">
                   {s.title}
                 </Link>
               ))}
@@ -172,13 +172,20 @@ export function Header() {
                 <div key={r.region} className="pt-1">
                   <p className="px-3 pt-2 text-[10px] uppercase tracking-widest text-muted-foreground">{r.region}</p>
                   {r.items.map((m) => (
-                    <Link key={m.slug} to={`/marketplaces/${m.slug}`} onClick={() => setOpen(false)} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground">
+                    <Link
+                      key={m.slug}
+                      to="/marketplaces"
+                      hash={marketplaceAnchor[m.slug] ?? m.slug}
+                      onClick={() => { setOpen(false); setMobileGroup(null); }}
+                      className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground cursor-pointer"
+                    >
                       <span className="mr-2">{m.flag}</span>{m.name}
                     </Link>
                   ))}
                 </div>
               ))}
             </MobileGroup>
+
 
             <Button asChild className="mt-3 bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold">
               <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Book Free Consultation</a>
