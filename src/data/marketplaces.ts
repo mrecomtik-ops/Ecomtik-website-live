@@ -60,3 +60,28 @@ export const marketplacesByRegion = regions.map((r) => ({
 }));
 
 export const getMarketplace = (slug: string) => marketplaces.find((m) => m.slug === slug);
+
+export const marketplaceAnchor: Record<string, string> = {
+  "amazon-ae": "uae",
+  "amazon-sa": "saudi-arabia",
+  "amazon-eg": "egypt",
+  "noon-uae": "noon-uae",
+  "noon-ksa": "noon-ksa",
+  "amazon-uk": "united-kingdom",
+  "amazon-de": "germany",
+  "amazon-fr": "france",
+  "amazon-it": "italy",
+  "amazon-es": "spain",
+  "amazon-nl": "netherlands",
+  "amazon-se": "sweden",
+  "amazon-pl": "poland",
+  "amazon-us": "united-states",
+  "amazon-ca": "canada",
+  "amazon-jp": "japan",
+  "amazon-sg": "singapore",
+  "amazon-au": "australia",
+  "amazon-in": "india",
+  "amazon-tr": "turkey",
+  "amazon-mx": "mexico",
+  "amazon-br": "brazil",
+};
