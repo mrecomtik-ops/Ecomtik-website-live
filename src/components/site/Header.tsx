@@ -236,7 +236,7 @@ function MegaColumn({
 }: {
   eyebrow: string;
   title: string;
-  items: { to: string; title: string; desc: string; Icon: React.ComponentType<{ className?: string }> }[];
+  items: { slug: string; title: string; desc: string; Icon: React.ComponentType<{ className?: string }> }[];
 }) {
   return (
     <div>
@@ -244,10 +244,11 @@ function MegaColumn({
       <h3 className="mt-1 font-display text-base font-semibold">{title}</h3>
       <ul className="mt-4 space-y-1">
         {items.map((i) => (
-          <li key={i.to}>
+          <li key={i.slug}>
             <Link
-              to={i.to}
-              className="group/link flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5"
+              to="/services/$slug"
+              params={{ slug: i.slug }}
+              className="group/link flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.72_0.18_55)] cursor-pointer"
             >
               <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-md bg-brand-gradient text-[oklch(0.15_0.02_265)]">
                 <i.Icon className="h-4 w-4" />
@@ -258,6 +259,7 @@ function MegaColumn({
               </span>
             </Link>
           </li>
+
         ))}
       </ul>
     </div>
