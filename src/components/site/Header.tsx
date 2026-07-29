@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { trackAServices, trackBServices } from "@/data/services";
-import { marketplacesByRegion } from "@/data/marketplaces";
+import { marketplacesByRegion, marketplaceAnchor } from "@/data/marketplaces";
 import { WHATSAPP_URL } from "@/data/site";
 
 const primary = [
@@ -52,7 +52,7 @@ export function Header() {
                 eyebrow="Track A"
                 title="Brand Building"
                 items={trackAServices.map((s) => ({
-                  to: `/services/${s.slug}`,
+                  slug: s.slug,
                   title: s.title,
                   desc: s.short,
                   Icon: s.icon,
@@ -62,7 +62,7 @@ export function Header() {
                 eyebrow="Track B"
                 title="Amazon Growth"
                 items={trackBServices.map((s) => ({
-                  to: `/services/${s.slug}`,
+                  slug: s.slug,
                   title: s.title,
                   desc: s.short,
                   Icon: s.icon,
@@ -86,8 +86,9 @@ export function Header() {
                     {r.items.map((m) => (
                       <li key={m.slug}>
                         <Link
-                          to={`/marketplaces/${m.slug}`}
-                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                          to="/marketplaces"
+                          hash={marketplaceAnchor[m.slug] ?? m.slug}
+                          className="flex items-center gap-2 rounded-md px-1.5 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.72_0.18_55)] cursor-pointer"
                         >
                           <span>{m.flag}</span>
                           <span>{m.name}</span>
@@ -104,6 +105,7 @@ export function Header() {
               </Link>
             </div>
           </MegaTrigger>
+
 
           <HeaderLink to="/blog">Blog</HeaderLink>
           <HeaderLink to="/about">About</HeaderLink>
@@ -149,13 +151,13 @@ export function Header() {
             >
               <p className="mt-1 px-3 pt-2 text-[10px] uppercase tracking-widest text-muted-foreground">Track A</p>
               {trackAServices.map((s) => (
-                <Link key={s.slug} to={`/services/${s.slug}`} onClick={() => setOpen(false)} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground">
+                <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }} onClick={() => { setOpen(false); setMobileGroup(null); }} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground cursor-pointer">
                   {s.title}
                 </Link>
               ))}
               <p className="mt-1 px-3 pt-2 text-[10px] uppercase tracking-widest text-muted-foreground">Track B</p>
               {trackBServices.map((s) => (
-                <Link key={s.slug} to={`/services/${s.slug}`} onClick={() => setOpen(false)} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground">
+                <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }} onClick={() => { setOpen(false); setMobileGroup(null); }} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground cursor-pointer">
                   {s.title}
                 </Link>
               ))}
@@ -170,13 +172,20 @@ export function Header() {
                 <div key={r.region} className="pt-1">
                   <p className="px-3 pt-2 text-[10px] uppercase tracking-widest text-muted-foreground">{r.region}</p>
                   {r.items.map((m) => (
-                    <Link key={m.slug} to={`/marketplaces/${m.slug}`} onClick={() => setOpen(false)} className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground">
+                    <Link
+                      key={m.slug}
+                      to="/marketplaces"
+                      hash={marketplaceAnchor[m.slug] ?? m.slug}
+                      onClick={() => { setOpen(false); setMobileGroup(null); }}
+                      className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-white/5 hover:text-foreground cursor-pointer"
+                    >
                       <span className="mr-2">{m.flag}</span>{m.name}
                     </Link>
                   ))}
                 </div>
               ))}
             </MobileGroup>
+
 
             <Button asChild className="mt-3 bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold">
               <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Book Free Consultation</a>
@@ -234,7 +243,7 @@ function MegaColumn({
 }: {
   eyebrow: string;
   title: string;
-  items: { to: string; title: string; desc: string; Icon: React.ComponentType<{ className?: string }> }[];
+  items: { slug: string; title: string; desc: string; Icon: React.ComponentType<{ className?: string }> }[];
 }) {
   return (
     <div>
@@ -242,10 +251,11 @@ function MegaColumn({
       <h3 className="mt-1 font-display text-base font-semibold">{title}</h3>
       <ul className="mt-4 space-y-1">
         {items.map((i) => (
-          <li key={i.to}>
+          <li key={i.slug}>
             <Link
-              to={i.to}
-              className="group/link flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5"
+              to="/services/$slug"
+              params={{ slug: i.slug }}
+              className="group/link flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.72_0.18_55)] cursor-pointer"
             >
               <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-md bg-brand-gradient text-[oklch(0.15_0.02_265)]">
                 <i.Icon className="h-4 w-4" />
@@ -256,6 +266,7 @@ function MegaColumn({
               </span>
             </Link>
           </li>
+
         ))}
       </ul>
     </div>
