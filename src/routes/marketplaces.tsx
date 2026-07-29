@@ -54,8 +54,10 @@ function MarketplacesPage() {
                 {r.items.map((m) => (
                   <Link
                     key={m.slug}
-                    to={`/marketplaces/${m.slug}`}
-                    className="group flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20 hover:bg-white/[0.05]"
+                    id={marketplaceAnchor[m.slug] ?? m.slug}
+                    to="/marketplaces/$slug"
+                    params={{ slug: m.slug }}
+                    className="group scroll-mt-28 flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20 hover:bg-white/[0.05]"
                   >
                     <div>
                       <div className="flex items-center gap-3">
@@ -70,6 +72,7 @@ function MarketplacesPage() {
                     <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
                   </Link>
                 ))}
+
               </div>
             </div>
           ))}
