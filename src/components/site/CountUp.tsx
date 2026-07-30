@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Animated number that counts up when scrolled into view.
- * Supports a numeric target with an optional suffix (e.g. "+", "%", "★").
- * If `raw` is provided, it's parsed for a leading integer; anything else is treated as the suffix.
+ * Number that is present in the server-rendered HTML immediately (SEO + no-JS safe).
+ * The count-up animation is layered on top visually as an aria-hidden overlay,
+ * so the DOM never renders a misleading "0".
  */
 export function CountUp({
   value,
@@ -17,23 +17,26 @@ export function CountUp({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement | null>(null);
-  const [n, setN] = useState(0);
+  const [n, setN] = useState<number | null>(null);
   const started = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting && !started.current) {
             started.current = true;
+            setN(0);
             const start = performance.now();
             const step = (t: number) => {
               const p = Math.min(1, (t - start) / duration);
               const eased = 1 - Math.pow(1 - p, 3);
               setN(Math.round(eased * value));
               if (p < 1) requestAnimationFrame(step);
+              else setN(null);
             };
             requestAnimationFrame(step);
           }
@@ -46,9 +49,19 @@ export function CountUp({
   }, [value, duration]);
 
   return (
-    <span ref={ref} className={className}>
-      {n}
-      {suffix}
+    <span ref={ref} className={`relative inline-block ${className ?? ""}`}>
+      {/* Real value — always in the HTML */}
+      <span style={n !== null ? { visibility: "hidden" } : undefined}>
+        {value}
+        {suffix}
+      </span>
+      {/* Animated overlay */}
+      {n !== null && (
+        <span aria-hidden className="absolute inset-0">
+          {n}
+          {suffix}
+        </span>
+      )}
     </span>
   );
 }
