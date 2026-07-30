@@ -112,10 +112,18 @@ export function Header() {
           <HeaderLink to="/contact">Contact</HeaderLink>
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
           <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold text-[15px] px-6 py-2.5 hover:opacity-90 hover:scale-105 transition-transform">
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Book Free Consultation</a>
+            <Link to="/contact">Book Free Consultation</Link>
           </Button>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[13px] font-medium text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
+          >
+            WhatsApp
+          </a>
         </div>
 
         <button
@@ -188,8 +196,17 @@ export function Header() {
 
 
             <Button asChild className="mt-3 bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold">
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Book Free Consultation</a>
+              <Link to="/contact" onClick={() => setOpen(false)}>Book Free Consultation</Link>
             </Button>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-2 text-center text-sm text-muted-foreground underline underline-offset-4"
+            >
+              Or chat on WhatsApp
+            </a>
           </nav>
         </div>
       )}

@@ -58,11 +58,11 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const stats: { value: number; suffix: string; label: string; sub: string; Icon: typeof Globe2 }[] = [
+const stats: { value?: number; text?: string; suffix: string; label: string; sub: string; Icon: typeof Globe2 }[] = [
   { value: 22, suffix: "", label: "Global Marketplaces", sub: "20 Amazon + 2 Noon", Icon: Globe2 },
   { value: 11, suffix: "", label: "Specialized Services", sub: "Brand & Amazon", Icon: Layers },
   { value: 5, suffix: "", label: "Brand-Building Stages", sub: "One assembly line", Icon: Factory },
-  { value: 1, suffix: "", label: "End-to-End Partner", sub: "One accountable team", Icon: Handshake },
+  { text: "End-to-End", suffix: "", label: "Partnership Model", sub: "One accountable team", Icon: Handshake },
 ];
 
 const factoryStages = [
@@ -190,8 +190,8 @@ function HomePage() {
                   </span>
                   <span className="font-mono text-[10px] text-muted-foreground/70">/{String(stats.indexOf(s) + 1).padStart(2, "0")}</span>
                 </div>
-                <p className="mt-6 numeral text-6xl font-bold text-brand-gradient">
-                  <CountUp value={s.value} suffix={s.suffix} />
+                <p className={`mt-6 numeral font-bold text-brand-gradient ${s.text ? "text-4xl" : "text-6xl"}`}>
+                  {s.text ? s.text : <CountUp value={s.value!} suffix={s.suffix} />}
                 </p>
                 <div className="mt-1 h-px bg-gradient-to-r from-[oklch(0.72_0.18_55)]/50 via-[oklch(0.82_0.17_75)]/30 to-transparent" />
                 <p className="mt-3 text-[15px] font-semibold text-foreground">{s.label}</p>
