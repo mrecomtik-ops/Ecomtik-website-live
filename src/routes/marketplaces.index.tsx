@@ -4,7 +4,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { marketplacesByRegion, marketplaces, marketplaceAnchor } from "@/data/marketplaces";
 
-export const Route = createFileRoute("/marketplaces")({
+export const Route = createFileRoute("/marketplaces/")({
   head: () => ({
     meta: [
       { title: "21 Amazon Marketplaces — Global Coverage | Ecomtik" },

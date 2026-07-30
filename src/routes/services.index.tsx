@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { trackAServices, trackBServices, type Service } from "@/data/services";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Services — Brand Building & Amazon Growth | Ecomtik" },
