@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Ecomtik helps entrepreneurs and businesses create powerful brands, develop products, launch on Amazon, and expand across 21 Amazon marketplaces — from Dubai.",
+          "Ecomtik helps entrepreneurs and businesses create powerful brands, develop products, launch on Amazon, and expand across 22 marketplaces — 20 Amazon and 2 Noon — from Dubai.",
       },
       { name: "keywords", content: "brand building agency, Amazon growth agency, Amazon private label, product sourcing, brand launch Dubai, global marketplace expansion" },
       { property: "og:title", content: "Ecomtik — Build Brands. Scale Globally." },
@@ -59,7 +59,7 @@ export const Route = createFileRoute("/")({
 });
 
 const stats: { value: number; suffix: string; label: string; sub: string; Icon: typeof Globe2 }[] = [
-  { value: 21, suffix: "", label: "Global Marketplaces", sub: "Amazon + regional", Icon: Globe2 },
+  { value: 22, suffix: "", label: "Global Marketplaces", sub: "20 Amazon + 2 Noon", Icon: Globe2 },
   { value: 11, suffix: "", label: "Specialized Services", sub: "Brand & Amazon", Icon: Layers },
   { value: 5, suffix: "", label: "Brand-Building Stages", sub: "One assembly line", Icon: Factory },
   { value: 1, suffix: "", label: "End-to-End Partner", sub: "One accountable team", Icon: Handshake },
@@ -120,7 +120,7 @@ function HomePage() {
             </h1>
             <p className="mt-6 max-w-xl text-[19px] leading-[1.65] text-muted-foreground">
               Ecomtik helps entrepreneurs and businesses create powerful brands, develop products,
-              launch on Amazon, and expand across 21 Amazon marketplaces with practical strategy and execution.
+              launch on Amazon, and expand across 22 marketplaces — 20 Amazon and 2 Noon — with practical strategy and execution.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold text-[16px] px-7 py-6 hover:opacity-90 hover:scale-105 transition-transform shadow-[0_0_30px_oklch(0.72_0.18_55/0.4)]">
@@ -425,7 +425,7 @@ function HomePage() {
       <section className="relative section-bg-3 border-b border-white/5">
         <div className="container-page py-20 md:py-24">
           <div className="max-w-2xl">
-            <p className="eyebrow">21 Amazon Marketplaces</p>
+            <p className="eyebrow">22 marketplaces — 20 Amazon and 2 Noon</p>
             <h2 className="mt-3 text-3xl md:text-5xl font-bold" style={{ fontFamily: "Sora" }}>
               Global reach, one <span className="text-brand-gradient">operating team.</span>
             </h2>
@@ -452,8 +452,8 @@ function HomePage() {
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-[oklch(0.82_0.17_75)]/20" />
               </div>
               <div className="mt-6 text-center lg:text-left">
-                <p className="numeral text-5xl font-bold text-brand-gradient">21</p>
-                <p className="text-sm text-muted-foreground">Global Amazon marketplaces managed by one operating team</p>
+                <p className="numeral text-5xl font-bold text-brand-gradient">22</p>
+                <p className="text-sm text-muted-foreground">Global marketplaces — 20 Amazon and 2 Noon — managed by one operating team</p>
               </div>
             </div>
             <div className="lg:col-span-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -485,7 +485,7 @@ function HomePage() {
           </div>
           <div className="mt-10 text-center">
             <Button asChild variant="outline" size="lg" className="border-white/15 bg-white/5 text-[16px] px-7 py-6 hover:bg-white/10">
-              <Link to="/marketplaces">Explore all {marketplaces.length} Amazon marketplaces <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link to="/marketplaces">Explore all 22 marketplaces — 20 Amazon and 2 Noon <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </div>

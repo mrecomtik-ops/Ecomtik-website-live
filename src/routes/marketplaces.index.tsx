@@ -7,15 +7,15 @@ import { marketplacesByRegion, marketplaces, marketplaceAnchor } from "@/data/ma
 export const Route = createFileRoute("/marketplaces/")({
   head: () => ({
     meta: [
-      { title: "21 Amazon Marketplaces — Global Coverage | Ecomtik" },
+      { title: "22 Marketplaces — 20 Amazon and 2 Noon | Ecomtik" },
       {
         name: "description",
         content:
-          "Launch and scale your brand across 21 Amazon marketplaces — from Amazon.ae and Amazon.sa to Amazon.com, Amazon.jp and beyond. Local pricing, tax and creative from Ecomtik.",
+          "Launch and scale your brand across 22 marketplaces — 20 Amazon and 2 Noon — from Amazon.ae and Amazon.sa to Amazon.com, Amazon.jp and beyond. Local pricing, tax and creative from Ecomtik.",
       },
       { name: "keywords", content: "Amazon global marketplaces, Amazon international expansion, sell on Amazon UAE, sell on Amazon Saudi Arabia, Amazon Europe launch" },
-      { property: "og:title", content: "21 Amazon Marketplaces | Ecomtik" },
-      { property: "og:description", content: "Global Amazon coverage — 21 Amazon marketplaces, one operating team." },
+      { property: "og:title", content: "22 Marketplaces — 20 Amazon and 2 Noon | Ecomtik" },
+      { property: "og:description", content: "Global coverage — 22 marketplaces — 20 Amazon and 2 Noon, one operating team." },
       { property: "og:url", content: "/marketplaces" },
     ],
     links: [{ rel: "canonical", href: "/marketplaces" }],
@@ -35,9 +35,9 @@ function MarketplacesPage() {
   return (
     <>
       <PageHero
-        eyebrow={`${marketplaces.length} Amazon marketplaces`}
-        title="One team. Every Amazon marketplace worth being on."
-        description="We operate across 21 Amazon marketplaces globally — with local content, tax, logistics and creative. Pick a market to see how we launch there."
+        eyebrow="22 marketplaces — 20 Amazon and 2 Noon"
+        title="One team. Every marketplace worth being on."
+        description="We operate across 22 marketplaces — 20 Amazon and 2 Noon — globally — with local content, tax, logistics and creative. Pick a market to see how we launch there."
       />
 
       <Section className="!pt-24">
