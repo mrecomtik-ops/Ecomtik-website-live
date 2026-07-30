@@ -8,6 +8,10 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import netlify from "@netlify/vite-plugin-tanstack-start";
 
 export default defineConfig({
+  // Netlify deploys are produced by @netlify/vite-plugin-tanstack-start
+  // (dist/client + .netlify/v1/functions). Nitro's Cloudflare output is not
+  // used there, so keep it off to avoid two adapters fighting over dist/.
+  nitro: false,
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this

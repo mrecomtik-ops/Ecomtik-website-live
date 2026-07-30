@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Clock, Target, Users, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
 import { GridBg } from "@/components/site/GridBg";
 import { getService, services } from "@/data/services";
+import { getServiceDetail } from "@/data/detail-content";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -39,6 +40,7 @@ export const Route = createFileRoute("/services/$slug")({
 function ServiceDetailPage() {
   const { service: s } = Route.useLoaderData();
   const others = services.filter((x) => x.slug !== s.slug && x.track === s.track).slice(0, 3);
+  const d = getServiceDetail(s);
 
   return (
     <>
@@ -47,9 +49,11 @@ function ServiceDetailPage() {
         <div className="absolute inset-x-0 top-0 -z-10 h-96 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,oklch(0.72_0.18_55/.25),transparent_70%)]" />
         <div className="container-page py-20 md:py-28">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <Link to="/" className="hover:text-foreground">Home</Link>
+            <span>/</span>
             <Link to="/services" className="hover:text-foreground">Services</Link>
             <span>/</span>
-            <span className="text-brand-gradient">Track {s.track} · {s.trackLabel}</span>
+            <span className="text-brand-gradient">{s.title}</span>
           </div>
           <div className="mt-6 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-8">
@@ -60,7 +64,8 @@ function ServiceDetailPage() {
                 <p className="eyebrow">{s.trackLabel}</p>
               </div>
               <h1 className="mt-6 text-balance text-4xl leading-[1.05] md:text-6xl">{s.title}</h1>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{s.short}</p>
+              <p className="mt-5 max-w-2xl text-xl leading-relaxed text-foreground/90">{d.valueProp}</p>
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">{s.short}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="bg-brand-gradient text-[oklch(0.15_0.02_265)] font-semibold hover:opacity-90">
                   <Link to="/contact">Book a discovery call <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -91,6 +96,39 @@ function ServiceDetailPage() {
         <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">{s.overview}</p>
       </Section>
 
+      <Section eyebrow="The problem" title="What this solves.">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+            <Target className="h-6 w-6 text-[oklch(0.82_0.17_75)]" />
+            <h3 className="mt-4 text-xl">The problem</h3>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">{d.problem}</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+            <Users className="h-6 w-6 text-[oklch(0.82_0.17_75)]" />
+            <h3 className="mt-4 text-xl">Who this is for</h3>
+            <ul className="mt-3 space-y-2 text-base text-muted-foreground">
+              {d.audience.map((a) => (
+                <li key={a} className="flex items-start gap-2">
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-[oklch(0.82_0.17_75)]" />
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      <Section eyebrow="Deliverables" title="Exactly what you receive.">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {s.deliverables.map((del: string) => (
+            <div key={del} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+              <Check className="mt-0.5 h-5 w-5 shrink-0 text-[oklch(0.82_0.17_75)]" />
+              <p className="text-base">{del}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Process" title="How we deliver it.">
         <div className="grid gap-6 md:grid-cols-4">
           {s.process.map((p: { step: string; description: string }, i: number) => (
@@ -114,6 +152,28 @@ function ServiceDetailPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Scope" title="Timeline and what's excluded.">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border border-[oklch(0.72_0.18_55)]/25 bg-[oklch(0.72_0.18_55)]/[0.06] p-8">
+            <Clock className="h-6 w-6 text-[oklch(0.82_0.17_75)]" />
+            <h3 className="mt-4 text-xl">Typical timeline</h3>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">{d.timeline}</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+            <XCircle className="h-6 w-6 text-muted-foreground" />
+            <h3 className="mt-4 text-xl">Not included</h3>
+            <ul className="mt-3 space-y-2 text-base text-muted-foreground">
+              {d.excluded.map((e) => (
+                <li key={e} className="flex items-start gap-2">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground" />
+                  <span>{e}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Section>
+
       {s.faq.length > 0 && (
         <Section eyebrow="FAQ" title="Common questions.">
           <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.02]">
@@ -133,7 +193,7 @@ function ServiceDetailPage() {
       <Section eyebrow={`More in Track ${s.track}`} title="Related services.">
         <div className="grid gap-5 md:grid-cols-3">
           {others.map((o) => (
-            <Link key={o.slug} to={`/services/${o.slug}`} className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20">
+            <Link key={o.slug} to="/services/$slug" params={{ slug: o.slug }} className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20">
               <span className="grid h-10 w-10 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)]">
                 <o.icon className="h-5 w-5" />
               </span>

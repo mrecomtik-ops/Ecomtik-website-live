@@ -35,7 +35,7 @@ export function Footer() {
             </Link>
             <p className="mt-6 max-w-sm text-[17px] leading-relaxed text-muted-foreground">
               A Dubai-based brand builder and Amazon growth agency operating across
-              21 global marketplaces. From idea to established brand — one team, one plan.
+              22 marketplaces — 20 Amazon and 2 Noon. From idea to established brand — one team, one plan.
             </p>
             <ul className="mt-7 space-y-3 text-[16px] text-muted-foreground">
               <li className="flex items-start gap-3">
