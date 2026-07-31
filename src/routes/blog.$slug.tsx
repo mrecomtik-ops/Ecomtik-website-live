@@ -5,7 +5,7 @@ import { Section } from "@/components/site/Section";
 import { GridBg } from "@/components/site/GridBg";
 import { getPost, posts } from "@/data/blog";
 import { blogAuthor, getBlogSections, slugify } from "@/data/detail-content";
-import featuredImg from "@/assets/ecomtik-brand-strategy-workspace.webp.asset.json";
+import featuredImg from "@/assets/ecomtik-brand-strategy-workspace.webp";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -78,7 +78,7 @@ function BlogPostPage() {
           </div>
           <div className="mt-10 overflow-hidden rounded-3xl border border-white/10">
             <img
-              src={featuredImg.url}
+              src={featuredImg}
               alt={`${p.title} — Ecomtik article cover`}
               loading="lazy"
               className="h-full w-full object-cover"

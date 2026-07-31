@@ -49,19 +49,9 @@ export function CountUp({
   }, [value, duration]);
 
   return (
-    <span ref={ref} className={`relative inline-block ${className ?? ""}`}>
-      {/* Real value — always in the HTML */}
-      <span style={n !== null ? { visibility: "hidden" } : undefined}>
-        {value}
-        {suffix}
-      </span>
-      {/* Animated overlay */}
-      {n !== null && (
-        <span aria-hidden className="absolute inset-0">
-          {n}
-          {suffix}
-        </span>
-      )}
+    <span ref={ref} className={className}>
+      {n ?? value}
+      {suffix}
     </span>
   );
 }
