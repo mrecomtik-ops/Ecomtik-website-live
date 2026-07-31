@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { WHATSAPP_URL } from "@/data/site";
-import aboutImg from "@/assets/ecomtik-brand-strategy-workspace.webp.asset.json";
+import aboutImg from "@/assets/ecomtik-brand-strategy-workspace.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -55,7 +55,7 @@ function AboutPage() {
           <div className="md:col-span-6">
             <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.5)]">
               <img
-                src={aboutImg.url}
+                src={aboutImg}
                 alt="Ecomtik brand strategy workspace with premium product prototypes and analytics"
                 className="w-full h-auto object-cover"
                 loading="lazy"

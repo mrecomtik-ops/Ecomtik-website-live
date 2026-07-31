@@ -1,4 +1,4 @@
-import logo from "@/assets/ecomtik-logo.png.asset.json";
+import logo from "@/assets/ecomtik-logo.png";
 
 export function Logo({
   size = "md",
@@ -25,7 +25,7 @@ export function Logo({
         }}
       >
         <img
-          src={logo.url}
+          src={logo}
           alt="Ecomtik"
           className="block h-full w-full object-contain"
           style={{ height: "100%", maxHeight: "100%" }}

@@ -31,8 +31,8 @@ import { GridBg } from "@/components/site/GridBg";
 import { CountUp } from "@/components/site/CountUp";
 import { trackAServices, trackBServices } from "@/data/services";
 import { marketplacesByRegion, marketplaces } from "@/data/marketplaces";
-import heroImg from "@/assets/ecomtik-brand-factory-hero.webp.asset.json";
-import globeImg from "@/assets/ecomtik-global-marketplace-network.webp.asset.json";
+import heroImg from "@/assets/ecomtik-brand-factory-hero.webp";
+import globeImg from "@/assets/ecomtik-global-marketplace-network.webp";
 import demoMockup from "@/assets/ecomtik-demo-website-mockup.webp";
 
 const FREE_DEMO_WHATSAPP =
@@ -147,7 +147,7 @@ function HomePage() {
 
               <div className="relative rounded-3xl overflow-hidden border border-[oklch(0.72_0.18_55)]/30 bg-black/40 backdrop-blur-sm shadow-[0_25px_80px_-20px_oklch(0.72_0.18_55/0.45)] animate-float">
                 <img
-                  src={heroImg.url}
+                  src={heroImg}
                   alt="Ecomtik brand factory — futuristic product creation lab with global analytics"
                   className="w-full h-auto object-cover"
                   loading="eager"
@@ -443,7 +443,7 @@ function HomePage() {
               </div>
               <div className="relative rounded-3xl overflow-hidden border border-[oklch(0.72_0.18_55)]/30 bg-black/40 shadow-[0_25px_80px_-20px_oklch(0.72_0.18_55/0.35)]">
                 <img
-                  src={globeImg.url}
+                  src={globeImg}
                   alt="Global marketplace network connecting Amazon storefronts worldwide"
                   className="w-full h-auto object-cover"
                   loading="lazy"
