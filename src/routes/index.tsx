@@ -62,7 +62,7 @@ const stats: { value?: number; text?: string; suffix: string; label: string; sub
   { value: 22, suffix: "", label: "Global Marketplaces", sub: "20 Amazon + 2 Noon", Icon: Globe2 },
   { value: 11, suffix: "", label: "Specialized Services", sub: "Brand & Amazon", Icon: Layers },
   { value: 5, suffix: "", label: "Brand-Building Stages", sub: "One assembly line", Icon: Factory },
-  { text: "End-to-End", suffix: "", label: "Partnership Model", sub: "One accountable team", Icon: Handshake },
+  { value: 1, suffix: "", label: "End-to-End Growth Partner", sub: "One accountable team", Icon: Handshake },
 ];
 
 const factoryStages = [
@@ -373,9 +373,9 @@ function HomePage() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 lg:auto-rows-fr">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-fr">
             {/* featured */}
-            <div className="group relative overflow-hidden rounded-2xl border border-[oklch(0.72_0.18_55)]/30 bg-gradient-to-br from-[oklch(0.72_0.18_55)]/10 via-[oklch(0.13_0.02_265)]/70 to-[oklch(0.13_0.02_265)]/40 p-8 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2 transition-all hover:border-[oklch(0.72_0.18_55)]/60">
+            <div className="group relative overflow-hidden rounded-2xl border border-[oklch(0.72_0.18_55)]/30 bg-gradient-to-br from-[oklch(0.72_0.18_55)]/10 via-[oklch(0.13_0.02_265)]/70 to-[oklch(0.13_0.02_265)]/40 p-8 md:col-span-2 lg:col-span-6 lg:row-span-2 transition-all hover:border-[oklch(0.72_0.18_55)]/60">
               <div className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full" style={{ background: "radial-gradient(circle, oklch(0.72 0.18 55 / 0.35), transparent 70%)" }} />
               {/* Subtle futuristic brand-building visual: orbital rings + floating brand tokens */}
               <div className="pointer-events-none absolute inset-0 opacity-70">
@@ -408,8 +408,8 @@ function HomePage() {
               </div>
             </div>
 
-            {audiences.slice(1).map((a) => (
-              <div key={a.title} className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.2)] hover:-translate-y-1">
+            {audiences.slice(1).map((a, i) => (
+              <div key={a.title} className={`group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:border-[oklch(0.72_0.18_55)]/40 hover:shadow-[0_0_30px_oklch(0.72_0.18_55/0.2)] hover:-translate-y-1 ${i === 0 ? "lg:col-span-6" : "lg:col-span-3"}`}>
                 <span className="grid h-11 w-11 place-items-center rounded-lg bg-brand-gradient text-[oklch(0.15_0.02_265)] transition-transform group-hover:scale-110 group-hover:rotate-6">
                   <a.Icon className="h-5 w-5" />
                 </span>
