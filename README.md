@@ -1,14 +1,12 @@
-# Remix of Ecomtik Growth Hub
+# Quiet Time Project
 
-Build a professional multi-page marketing website for Ecomtik, a Dubai-based brand builder and Amazon growth agency. Use React + Vite + TypeScript, Tailwind CSS, shadcn/ui components, Lucide React icons, react-hook-form + Zod for forms, and client-side routing (wouter or react-router). Use react-helmet-async (or equivalent) for per-page SEO meta tags.
+don't create anything now
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://dubai-brand-booster.lovable.app
-
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/9ab22a9d-bfe6-4d67-b8db-9cd1ed957d32).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/394f33c2-558b-43d8-a60c-62921346eae4).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
