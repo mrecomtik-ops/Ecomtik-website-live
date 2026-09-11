@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { getPublishedRecords, slugFromPath } from "@/content/registry";
+import type { PublishedRecord } from "@/content/types";
 import { Reveal } from "./Reveal";
 
-export function ArticleDirectory() {
-  const articles = getPublishedRecords("blog");
+export function ArticleDirectory({ extra = [] }: { extra?: PublishedRecord[] }) {
+  const articles = [...extra, ...getPublishedRecords("blog")];
 
   return (
     <section className="bg-white py-20 lg:py-28">

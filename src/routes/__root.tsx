@@ -164,6 +164,16 @@ function RootComponent() {
     trackEvent("page_view", { page_path: pathname, page_title: document.title });
   }, [pathname]);
 
+  const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
+
+  if (isAdmin) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+      </QueryClientProvider>
+    );
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col bg-white">
