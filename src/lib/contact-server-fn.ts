@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import nodemailer from "nodemailer";
+import { getRecordById } from "@/content/registry";
 
 export type ContactSubmission = {
   name: string;
@@ -101,6 +102,14 @@ export const submitContact = createServerFn({ method: "POST" })
       return { ok: false, reason: "not_configured" };
     }
 
+    // The form submits the service's stable content ID (e.g. "S02"), not its
+    // display name, so the ID survives future copy edits. Resolve it back to
+    // a readable name here so the notification email stays human-readable.
+    const serviceRecord = data.service ? getRecordById(data.service) : undefined;
+    const serviceLabel = serviceRecord
+      ? serviceRecord.metadata.title.replace(/\s*\|\s*Ecomtik$/, "")
+      : data.service;
+
     try {
       const transporter = nodemailer.createTransport({
         service: "gmail",
@@ -116,7 +125,7 @@ export const submitContact = createServerFn({ method: "POST" })
           `Name: ${data.name}`,
           `Email: ${data.email}`,
           `WhatsApp/phone: ${data.whatsapp || "Not provided"}`,
-          `Service required: ${data.service || "Not specified"}`,
+          `Service required: ${serviceLabel || "Not specified"}`,
           `Target marketplace: ${data.marketplace || "Not specified"}`,
           `Product/store link: ${data.storeUrl || "Not provided"}`,
           "",
