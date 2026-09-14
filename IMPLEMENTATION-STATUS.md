@@ -2,7 +2,7 @@
 
 ## This pass — 14 September 2026, full 12-section production update
 
-**Commit:** the commit that includes this file (run `git log -1 --format=%H` in this repo to read the exact hash — this file can't self-reference the hash of the commit it's part of).
+**Commit:** `1cacdc6` (pushed to `origin/main` as a fast-forward from `a20b76c`).
 
 This is a large pass covering navigation, service-page depth, blog structured data, legal-page cleanup, technical SEO and accessibility. It builds directly on top of this repo's existing content-registry architecture and admin/blog CMS (built by an earlier session — untouched here) and the previous pass's header-dropdown/hero-color/SEO fixes (commits `a20b76c`, `ad15ccc`). See those commit messages and the file history for what came before.
 
