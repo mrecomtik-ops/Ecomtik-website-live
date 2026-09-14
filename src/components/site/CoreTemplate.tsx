@@ -3,6 +3,7 @@ import type { PublishedRecord } from "@/content/types";
 import { PageHero } from "./PageHero";
 import { MarkdownBody } from "./MarkdownBody";
 import { Reveal } from "./Reveal";
+import { JsonLd, buildBreadcrumbJsonLd } from "./JsonLd";
 
 type Crumb = { label: string; to?: string };
 
@@ -17,10 +18,15 @@ export function CoreTemplate({
   crumbs?: Crumb[];
   children?: ReactNode;
 }) {
-  const { h1, description } = record.metadata;
+  const { h1, description, path } = record.metadata;
 
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd(
+          crumbs.map((c) => ({ name: c.label, path: c.to ?? path }))
+        )}
+      />
       <PageHero eyebrow={eyebrow} title={h1} intro={description} crumbs={crumbs} />
 
       <section className="bg-white py-20 lg:py-28">

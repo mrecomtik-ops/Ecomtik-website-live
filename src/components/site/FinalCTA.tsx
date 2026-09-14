@@ -8,6 +8,7 @@ export function FinalCTA({
   title = "Let's build the brand your category hasn't seen yet.",
   copy = "Share where you are today and we'll come back with a candid view of the opportunity, the sequence, and what it takes to win.",
   primaryLabel = "Start Growing",
+  primaryServiceId,
   secondaryLabel = "Explore Services",
   secondaryTo = "/services",
 }: {
@@ -15,6 +16,8 @@ export function FinalCTA({
   title?: string;
   copy?: string;
   primaryLabel?: string;
+  /** Pre-selects this service id in the contact form's "Service required" field. */
+  primaryServiceId?: string;
   secondaryLabel?: string;
   secondaryTo?: string;
 }) {
@@ -46,6 +49,7 @@ export function FinalCTA({
               <div className="mt-9 flex flex-wrap gap-4">
                 <Link
                   to="/contact"
+                  {...(primaryServiceId ? { search: { service: primaryServiceId } } : {})}
                   className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-4 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-amber"
                 >
                   {primaryLabel}

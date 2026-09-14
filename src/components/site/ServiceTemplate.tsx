@@ -6,13 +6,20 @@ import { PageHero } from "./PageHero";
 import { MarkdownBody } from "./MarkdownBody";
 import { FinalCTA } from "./FinalCTA";
 import { Reveal } from "./Reveal";
+import { JsonLd, buildBreadcrumbJsonLd } from "./JsonLd";
 
 export function ServiceTemplate({ record }: { record: PublishedRecord }) {
-  const { h1, description, family } = record.metadata;
+  const { h1, description, family, id, path } = record.metadata;
   const relatedArticles = getRelatedArticles(record);
 
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: "Services", path: "/services" },
+          { name: h1, path },
+        ])}
+      />
       <PageHero
         eyebrow={family ?? "Service"}
         title={h1}
@@ -50,7 +57,11 @@ export function ServiceTemplate({ record }: { record: PublishedRecord }) {
         </section>
       )}
 
-      <FinalCTA secondaryLabel="Explore all services" secondaryTo="/services" />
+      <FinalCTA
+        primaryServiceId={id}
+        secondaryLabel="Explore all services"
+        secondaryTo="/services"
+      />
     </>
   );
 }

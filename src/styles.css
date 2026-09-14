@@ -244,4 +244,14 @@
     transform: none;
     transition: none;
   }
+  /* Safety net for every other animated element (e.g. the hero's intro
+     animate-in, hover transitions) that isn't individually opted out above. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

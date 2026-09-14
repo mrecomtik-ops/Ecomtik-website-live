@@ -29,11 +29,17 @@ const EMPTY_FORM = {
 
 type SubmitState = "idle" | "pending" | "success" | "error";
 
-export function Contact() {
-  const [form, setForm] = useState(EMPTY_FORM);
+export function Contact({ initialServiceId }: { initialServiceId?: string | undefined }) {
+  const services = getPublishedRecords("service");
+  // Only pre-select a real, currently published service — an unrecognised or
+  // inactive id in the URL falls back to "Not sure yet" rather than leaving
+  // the select on a value with no matching <option>.
+  const validInitialServiceId = services.some((s) => s.metadata.id === initialServiceId)
+    ? initialServiceId!
+    : "";
+  const [form, setForm] = useState(() => ({ ...EMPTY_FORM, service: validInitialServiceId }));
   const [startedAt] = useState(() => Date.now());
   const [state, setState] = useState<SubmitState>("idle");
-  const services = getPublishedRecords("service");
 
   const field =
     "w-full rounded-2xl border border-white/15 bg-white/[0.06] px-5 py-4 text-sm text-white placeholder:text-white/40 outline-none transition-colors focus:border-brand/70 focus:bg-white/[0.09]";

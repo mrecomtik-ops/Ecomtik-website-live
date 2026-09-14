@@ -6,6 +6,10 @@ import { PageHero } from "@/components/site/PageHero";
 import { Contact } from "@/components/site/Contact";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): { service?: string } => {
+    const service = search["service"];
+    return typeof service === "string" ? { service } : {};
+  },
   loader: () => {
     const record = getRecordById("contact");
     if (!record) throw notFound();
@@ -17,6 +21,7 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const record = Route.useLoaderData();
+  const { service } = Route.useSearch();
   return (
     <>
       <PageHero
@@ -25,7 +30,7 @@ function ContactPage() {
         intro={record.metadata.description}
         crumbs={[{ label: "Contact" }]}
       />
-      <Contact />
+      <Contact initialServiceId={service} />
     </>
   );
 }

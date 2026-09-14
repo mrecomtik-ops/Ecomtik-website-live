@@ -3,12 +3,19 @@ import { PageHero } from "./PageHero";
 import { MarkdownBody } from "./MarkdownBody";
 import { FinalCTA } from "./FinalCTA";
 import { Reveal } from "./Reveal";
+import { JsonLd, buildBreadcrumbJsonLd } from "./JsonLd";
 
 export function MarketTemplate({ record }: { record: PublishedRecord }) {
-  const { h1, description } = record.metadata;
+  const { h1, description, path } = record.metadata;
 
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: "Marketplaces", path: "/marketplaces" },
+          { name: h1, path },
+        ])}
+      />
       <PageHero
         eyebrow="Marketplace"
         title={h1}
