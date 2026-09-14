@@ -1,11 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { IMAGES } from "@/lib/site-assets";
+import { cn } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { ServicesMenuGrid } from "./ServicesNavMenu";
+
+const NAV_LINK_CLASS =
+  "relative rounded-sm text-base font-bold tracking-wide text-graphite/80 outline-none transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-brand after:transition-all after:duration-300 hover:after:w-full focus-visible:text-ink focus-visible:ring-2 focus-visible:ring-brand/60 focus-visible:ring-offset-2 focus-visible:ring-offset-warm";
 
 const NAV = [
   { label: "Home", to: "/", exact: true },
-  { label: "Services", to: "/services" },
   { label: "Marketplaces", to: "/marketplaces" },
   { label: "Insights", to: "/blog" },
   { label: "About", to: "/about" },
@@ -14,11 +26,13 @@ const NAV = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   // Close the mobile menu whenever the route changes.
   useEffect(() => {
     setOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
 
   return (
@@ -28,19 +42,49 @@ export function SiteHeader() {
           <img src={IMAGES.logo} alt="Ecomtik" className="h-20 w-auto lg:h-24" />
         </Link>
 
-        <nav className="hidden items-center gap-x-5 xl:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              {...("exact" in item && item.exact ? { activeOptions: { exact: true } } : {})}
-              activeProps={{ className: "text-ink after:w-full" }}
-              className="relative text-base font-bold tracking-wide text-graphite/80 transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-brand after:transition-all after:duration-300 hover:after:w-full"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <NavigationMenu className="hidden max-w-none flex-none justify-start xl:flex">
+          <NavigationMenuList className="flex items-center gap-x-5 space-x-0">
+            <NavigationMenuItem>
+              <Link
+                to="/"
+                activeOptions={{ exact: true }}
+                activeProps={{ className: "text-ink after:w-full" }}
+                className={NAV_LINK_CLASS}
+              >
+                Home
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={cn(
+                  NAV_LINK_CLASS,
+                  "h-auto w-auto bg-transparent p-0 font-bold hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent",
+                  pathname.startsWith("/services") && "text-ink after:w-full",
+                )}
+              >
+                Services
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="!w-[min(46rem,90vw)] rounded-[24px] border border-ink/8 bg-white p-8 shadow-[0_30px_70px_-30px_rgba(8,8,8,0.35)]">
+                <ServicesMenuGrid />
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            {NAV.filter((item) => item.label !== "Home").map((item) => (
+              <NavigationMenuItem key={item.label}>
+                <NavigationMenuLink asChild>
+                  <Link
+                    to={item.to}
+                    activeProps={{ className: "text-ink after:w-full" }}
+                    className={NAV_LINK_CLASS}
+                  >
+                    {item.label}
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
         <div className="flex items-center gap-3">
           <Link
@@ -62,13 +106,48 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-warm xl:hidden">
+        <div className="max-h-[calc(100svh-7rem)] overflow-y-auto border-t border-border bg-warm xl:hidden">
           <nav className="mx-auto flex max-w-[1280px] flex-col px-6 py-4">
-            {NAV.map((item) => (
+            <Link
+              to="/"
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-brand" }}
+              className="border-b border-border/60 py-3.5 text-base font-bold text-graphite"
+            >
+              Home
+            </Link>
+
+            <div className="border-b border-border/60">
+              <button
+                type="button"
+                onClick={() => setMobileServicesOpen((v) => !v)}
+                aria-expanded={mobileServicesOpen}
+                aria-controls="mobile-services-panel"
+                className={cn(
+                  "flex w-full items-center justify-between rounded-sm py-3.5 text-base font-bold text-graphite outline-none focus-visible:ring-2 focus-visible:ring-brand/60 focus-visible:ring-offset-2 focus-visible:ring-offset-warm",
+                  pathname.startsWith("/services") && "text-brand",
+                )}
+              >
+                Services
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 transition-transform duration-300",
+                    mobileServicesOpen && "rotate-180",
+                  )}
+                  aria-hidden="true"
+                />
+              </button>
+              {mobileServicesOpen && (
+                <div id="mobile-services-panel" className="pb-4">
+                  <ServicesMenuGrid />
+                </div>
+              )}
+            </div>
+
+            {NAV.filter((item) => item.label !== "Home").map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
-                {...("exact" in item && item.exact ? { activeOptions: { exact: true } } : {})}
                 activeProps={{ className: "text-brand" }}
                 className="border-b border-border/60 py-3.5 text-base font-bold text-graphite last:border-0"
               >

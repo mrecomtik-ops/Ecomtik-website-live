@@ -57,7 +57,7 @@ export function Hero() {
           <div className="mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/15 pt-7">
             {TRUST.map((t) => (
               <div key={t} className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-cobalt" />
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-amber" />
                 <span className="text-[13px] font-medium tracking-wide text-white/80">{t}</span>
               </div>
             ))}
