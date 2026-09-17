@@ -6,7 +6,8 @@ const SITE_ORIGIN = "https://ecomtik.com";
 const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/images/hero-amazon-growth.jpg`;
 
 export function buildRecordHead(record: PublishedRecord) {
-  const { title, description, canonicalOnPublication, type } = record.metadata;
+  const { title, description, canonicalOnPublication, type, image } = record.metadata;
+  const ogImage = image ? `${SITE_ORIGIN}${image}` : DEFAULT_OG_IMAGE;
   return {
     meta: [
       { title },
@@ -15,7 +16,7 @@ export function buildRecordHead(record: PublishedRecord) {
       { property: "og:description", content: description },
       { property: "og:type", content: type === "blog" ? "article" : "website" },
       { property: "og:url", content: canonicalOnPublication },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { property: "og:image", content: ogImage },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: canonicalOnPublication }],

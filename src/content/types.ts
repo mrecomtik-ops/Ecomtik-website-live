@@ -33,6 +33,9 @@ export type PageMetadata = {
   publishedAt?: string | null;
   reviewedAt?: string | null;
   earliestSuggestedReleaseWeek?: number;
+  /** Path under /images (an existing licensed site asset, not a placeholder). */
+  image?: string;
+  imageAlt?: string;
 };
 
 export type ContentRecord = {

@@ -7,9 +7,20 @@ import { MarkdownBody } from "./MarkdownBody";
 import { Reveal } from "./Reveal";
 import { JsonLd, buildBreadcrumbJsonLd } from "./JsonLd";
 
+const SITE_ORIGIN = "https://ecomtik.com";
+
 export function ArticleTemplate({ record }: { record: PublishedRecord }) {
-  const { h1, description, category, author, publishedAt, canonicalOnPublication, path } =
-    record.metadata;
+  const {
+    h1,
+    description,
+    category,
+    author,
+    publishedAt,
+    canonicalOnPublication,
+    path,
+    image,
+    imageAlt,
+  } = record.metadata;
   const relatedServiceId = record.metadata.relatedServiceIds?.[0];
   const relatedService = relatedServiceId ? getRecordById(relatedServiceId) : undefined;
 
@@ -37,6 +48,7 @@ export function ArticleTemplate({ record }: { record: PublishedRecord }) {
             publisher: { "@id": "https://ecomtik.com/#organization" },
             datePublished: publishedAt,
             ...(record.metadata.reviewedAt ? { dateModified: record.metadata.reviewedAt } : {}),
+            ...(image ? { image: `${SITE_ORIGIN}${image}` } : {}),
           }}
         />
       )}
@@ -49,6 +61,16 @@ export function ArticleTemplate({ record }: { record: PublishedRecord }) {
 
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-[720px] px-6 lg:px-10">
+          {image && (
+            <img
+              src={image}
+              alt={imageAlt ?? h1}
+              loading="lazy"
+              width={1200}
+              height={800}
+              className="mb-10 aspect-[3/2] w-full rounded-[20px] object-cover"
+            />
+          )}
           {(author || publishedAt) && (
             <p className="mb-8 text-sm text-graphite/60">
               {author && <span>By {author}</span>}

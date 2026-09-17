@@ -1,0 +1,10 @@
+# Old search-indexed URL that no longer has a matching page. The replacement
+# article covers the same Brand Registry topic (eligibility, evidence,
+# enrollment benefits) and was expanded specifically to cover the old page's
+# ground before this redirect was added — see IMPLEMENTATION-STATUS.md.
+/blog/amazon-brand-registry-explained  /blog/amazon-brand-registry-checklist  301!
+
+# /blog/how-to-launch-on-amazon-uae-2026 is NOT redirected — it was restored
+# as a real article at the same URL (see records.json, id B13) instead.
+# /case-studies is NOT redirected — no verified case-study material exists,
+# so it intentionally remains a genuine 404. See BUSINESS-INPUTS-NEEDED.md.

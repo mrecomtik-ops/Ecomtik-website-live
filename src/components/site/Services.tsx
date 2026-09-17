@@ -50,7 +50,7 @@ const CATEGORIES: Category[] = [
       },
       {
         title: "Product Sourcing & Private Label",
-        copy: "A vetted supplier network from samples to scale — international sourcing without the risk.",
+        copy: "A vetted supplier network from samples to scale — international sourcing with the checks in place to identify and reduce risk at each stage.",
         points: [
           "Product research",
           "Supplier identification",
@@ -116,7 +116,7 @@ const CATEGORIES: Category[] = [
       },
       {
         title: "LLC Formation & Trade License",
-        copy: "End-to-end mainland and free zone setup, handled with zero friction.",
+        copy: "End-to-end mainland and free zone setup — licensing, structuring and documentation coordinated as one sequence.",
         points: [
           "LLC company setup",
           "Mainland company formation",
@@ -208,8 +208,8 @@ export function Services() {
               Everything You Need To Build, Launch &amp; Scale Globally
             </h2>
             <p className="mt-5 text-base leading-relaxed text-graphite/70">
-              One accountable partner across the full commercial stack — from the first sketch of
-              an identity to sustained profitability in every marketplace you sell in.
+              One accountable partner across the full commercial stack — from the first sketch of an
+              identity to sustained profitability in every marketplace you sell in.
             </p>
           </div>
         </Reveal>

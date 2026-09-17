@@ -1,79 +1,110 @@
 # Ecomtik implementation status
 
-## This pass — 14 September 2026, full 12-section production update
+## This pass — 17 September 2026, live SEO audit follow-up
 
-**Commit:** `1cacdc6` (pushed to `origin/main` as a fast-forward from `a20b76c`).
+**Commit:** `PENDING` (filled in by a follow-up commit once this one exists — see repo convention from the 14 September pass).
 
-This is a large pass covering navigation, service-page depth, blog structured data, legal-page cleanup, technical SEO and accessibility. It builds directly on top of this repo's existing content-registry architecture and admin/blog CMS (built by an earlier session — untouched here) and the previous pass's header-dropdown/hero-color/SEO fixes (commits `a20b76c`, `ad15ccc`). See those commit messages and the file history for what came before.
+This pass implements the remaining items from a live SEO audit of ecomtik.com dated 16 September 2026 (37 sitemap pages all 200, unique titles/descriptions/canonicals, one H1 per page, no accidental noindex, homepage CTA and services dropdown already fixed, all 12 blog articles had BlogPosting schema and visible byline/date — all confirmed still true and preserved). It builds on the 14 September pass (commit `1cacdc6`) without redoing that work.
 
-**Repo state before starting:** verified clean, `main` up to date with `origin/main`, no divergence (`git fetch` + `git log main..origin/main` empty). Re-verified again immediately before pushing.
+**Repo state before starting:** verified against the correct repository (`mrecomtik-ops/Ecomtik-website-live`, not the separate Cloudflare dev repo) — `git fetch` + `git status` showed `main` clean and up to date with `origin/main`, no divergence. Re-verified immediately before committing.
 
-### Files changed
+### 1. Old search-result URLs (all three resolved individually, not with one blanket rule)
 
-```
-src/components/site/ArticleTemplate.tsx   — visible byline/date, Organization-typed author JSON-LD, shared breadcrumb helper, fallback CTA card
-src/components/site/Contact.tsx           — accepts initialServiceId, pre-selects the service dropdown
-src/components/site/CoreTemplate.tsx      — breadcrumb JSON-LD for every hub/core page (about, services, blog, marketplaces, pricing)
-src/components/site/FinalCTA.tsx          — primaryServiceId prop, pre-selects contact form service on click
-src/components/site/Hero.tsx              — "Grow On Amazon" now a real Link to /contact (was a dead #contact anchor)
-src/components/site/JsonLd.tsx            — new buildBreadcrumbJsonLd() helper, reused by all 4 templates
-src/components/site/LegalPlaceholder.tsx  — removed the public "here's what we need" checklist; short honest notice + contact link instead
-src/components/site/MarketTemplate.tsx    — breadcrumb JSON-LD
-src/components/site/ServiceTemplate.tsx   — breadcrumb JSON-LD, primaryServiceId wired to FinalCTA
-src/content/records.json                  — see content changes below
-src/routes/contact.tsx                    — validateSearch for ?service=, passes it to <Contact>
-src/routes/privacy.tsx, terms.tsx         — no longer pass the checklist to LegalPlaceholder
-src/styles.css                            — reduced-motion safety net covering animate-in/hover transitions, not just .reveal/.page-enter
-```
+| Old URL | Resolution | Why |
+| --- | --- | --- |
+| `/blog/amazon-brand-registry-explained` | 301 redirect (Netlify `public/_redirects`) → `/blog/amazon-brand-registry-checklist` | Same topic (Brand Registry). The old page's "what you get" benefits angle (A+ content, Brand Store, Sponsored Brands, Vine, Transparency, Report a Violation) was missing from the checklist article, so **the checklist was expanded first** (new "What enrollment can unlock" section, sourced to Amazon's own Brand Registry page) to genuinely cover the old page's ground before the redirect was added. |
+| `/blog/how-to-launch-on-amazon-uae-2026` | **Restored as a real article at the same URL** — new record `B13` in `src/content/records.json`, no redirect | Per instruction, not redirected to a generic service page. The old version (git history `932f2b5`) contained specific unverifiable claims (e.g. "30–40% worse conversion", "15–30 units per SKU for Vine seeding") that could not be sourced, so it was rewritten from scratch in the site's existing sourced, hedged style — no invented statistics, three citations to real Amazon documentation. |
+| `/case-studies` | **Left as an intentional 404** — no change | The old page (git history `932f2b5`) listed four fabricated client brands (Aurelia Beauty, Halcyon Home, Kayan Wellness, Verdant Foods) with invented revenue/TACOS/Buy-Box figures. No real, permissioned case-study material exists anywhere in the repo or in any supplied business fact. Restoring it would mean publishing fabricated results, which is out of scope. Verified live and in the local build that this is a genuine 404 (not a soft-404): `curl -I` → `404`. Documented in `BUSINESS-INPUTS-NEEDED.md` item 11. |
 
-### Content changes (`src/content/records.json`)
+Redirect implementation: `public/_redirects` (Netlify's native redirect mechanism, evaluated ahead of the SSR function — confirmed present in `dist/client/_redirects` after `npm run build`). No redirect chains or loops (single hop, verified by reading the file — only one active rule). Internal links and the sitemap were already clean of all three old paths (grepped the full `src/` tree — zero references before this pass), so no internal-link cleanup was needed. Sitemap grew from 37 to 38 URLs (the new `B13` article; `/case-studies` was never in the sitemap and still isn't).
 
-- **14 published service pages** (S01–S05, S08–S16): each gained a UAE/Saudi-Arabia-specific section (Amazon-marketplace services only — not force-fit into the US/UK formation pages), one additional FAQ, inline links to the most topically relevant blog article(s), and the closing CTA switched from a bare `/contact` link to `/contact?service=<ID>` (pre-selects that service in the form). Existing intro/deliverables/"what we need to begin"/scope sections were preserved, not rewritten — they were already accurate and well-structured.
-- **12 blog articles**: `author` set to `"Ecomtik Editorial Team"` (a genuine editorial byline, not a fabricated person) and `publishedAt` set to `2026-09-10` — the actual, verifiable git commit date this content first went live in production (`7d1ecf5`), not invented or backdated. B07 also got `reviewedAt: 2026-09-13`, the real date its dead link was fixed. **This specific approach (team byline + git-history date) was explicitly proposed and approved by the user during planning**, as an alternative to leaving both fields null.
-- **About page**: added the confirmed HQ address (already public on the Contact page) for consistency. No fabricated team bios — none exist to draw from (see `BUSINESS-INPUTS-NEEDED.md`).
+### 2. Draft language and unsupported claims
 
-### Requirements completed
+- **Homepage** ("international sourcing without the risk", in `src/components/site/HomeTeasers.tsx`): replaced with "...manufacturing coordination that help you identify and reduce sourcing risk before you commit to an order."
+- **Services grid** (`src/components/site/Services.tsx`, rendered on the homepage) had the same "without the risk" line in a second location plus an undisclosed "zero friction" claim for company formation — both rewritten to describe the actual process (verification steps; licensing/structuring/documentation as one coordinated sequence) instead of an absolute outcome claim.
+- **Sourcing service page** (`S04`, `src/content/records.json`): the internal instruction "State whether inspection is performed or coordinated" was left in the public copy by mistake. No confirmed fact exists about whether Ecomtik performs inspection directly or arranges it, so — per instruction — the internal note was removed and replaced with an honest scope statement: inspection responsibilities are agreed and stated in the proposal per project, not asserted either way on the page.
+- **Other absolute claims**: grepped the full `src/` tree for `guarantee|100%|zero risk|risk-free|effortless|seamless|instant approval` — no further hits in component copy. The content-registry body copy (`records.json`) was already audited and confirmed clean of guarantee-style language in the 14 September pass; re-grepped this pass, still clean. `WhyEcomtik.tsx`'s general positioning copy ("operators who have built and scaled brands...") was reviewed and left alone — it's generic positioning language, not an absolute/guaranteed-outcome claim, and wasn't a confirmed issue.
 
-| # | Section | Status |
-| - | --- | --- |
-| 1 | Repo inspection | Done — fetched, verified clean/in-sync before and after |
-| 2 | Homepage CTA | Fixed — real `/contact` link, not `#contact` |
-| 2 | Services dropdown | Already done in the prior pass (`a20b76c`) — re-verified working (hover, keyboard, mobile) after this pass's changes, unaffected |
-| 2 | Hero dots | Already orange (prior pass) — re-verified, unaffected |
-| 3 | Strengthen 7 priority + remaining service pages | Done — all 14 published pages, per the content-changes note above |
-| 4 | New service coverage (Brand Registry, product research, 3PL, wholesale) | **Not published** — see `BUSINESS-INPUTS-NEEDED.md` items 2–4. S06/S07 already drafted and gate-ready; product research and 3PL have zero source facts to draft from |
-| 5 | Trust language / draft-language audit | Verified clean — grepped every service record for guarantee/risk-free-style language; all existing instances already correctly *disclaim* guarantees. No testimonials/case-study sections exist anywhere (nothing fake to remove) |
-| 6 | Privacy/Terms | Checklist removed from public pages (moved to `BUSINESS-INPUTS-NEEDED.md`). Pages remain genuinely unpublished pending legal facts — **not resolved**, correctly reported as such |
-| 7 | 12 blog articles | Byline + date now visible and in valid `BlogPosting` JSON-LD; `BreadcrumbList` preserved; every article confirmed to have a working next-step CTA (added a fallback for the 3 articles whose related service is still gated); citations were already present with real source URLs; scanned all 12 bodies for leftover draft markers — none found |
-| 8 | Technical SEO | Breadcrumb JSON-LD extended from articles-only to all page types (service/market/core); confirmed no duplicate JSON-LD entities; confirmed admin routes already `noindex` + excluded from sitemap/robots (prior work, unchanged); sitemap regenerated (37 URLs, unchanged set); canonical/og:image verified present and absolute on a sampled service page, article and homepage |
-| 9 | Accessibility | Reduced-motion coverage extended (styles.css); images already had proper alt text, explicit width/height and correct lazy-loading (hero eager, below-fold lazy) — verified, not changed; contact form already had proper `<label htmlFor>` — verified, not changed |
-| 10 | Contact/measurement | Verified only, no changes: success is returned only after `nodemailer`'s send resolves; no PII in the one `trackEvent("generate_lead")` call; secrets read only from `process.env`; no test enquiry was sent |
-| 11 | Verify/commit/deploy | See Verification and Deployment sections below |
-| 12 | This handover | This file + `BUSINESS-INPUTS-NEEDED.md` |
+### 3. Strengthened commercial service pages
 
-### Verification results
+All 7 pages (S01 account management, S02 PPC, S03 listing optimization, S04 product sourcing, S05 private label, S08 brand launch, S16 global expansion) already had the UAE/KSA sections and FAQs from the 14 September pass — preserved unchanged. Added to each, in the same sourced/hedged voice as the rest of the site:
+
+- A **"Who this fits"** section — intended customer, business stage, and who it explicitly does *not* fit (with a cross-link to the right page instead).
+- A **"What you receive and how it runs"** section — concrete deliverable formats (a written review, a content brief, a sample log, a landed-cost model, etc.) and where approval checkpoints actually sit, so a prospect knows what's reviewed before it ships versus what runs day-to-day without sign-off.
+- One additional FAQ per page, addressing a genuine process question (report format, approval authority, stop points) rather than a keyword-stuffing entry.
+
+`<title>` and meta description updated on the four pages the audit named as absent from non-brand search results (S01, S02, S03, S04), using the audit's own suggested geo-modifiers — each page got a **distinct** UAE/Dubai phrasing (Dubai & UAE / UAE / UAE / Dubai) specifically to avoid duplicating search intent across pages:
+
+- S01: "Amazon Account Management Dubai & UAE | Ecomtik"
+- S02: "Amazon PPC Management UAE | Ecomtik"
+- S03: "Amazon Listing Optimization UAE | Ecomtik"
+- S04: "Amazon Product Sourcing Dubai | Ecomtik"
+
+H1s were left unchanged (already keyword-appropriate, and changing indexed H1 text carries more ranking-continuity risk than a title/description refresh). No new client names, figures, certifications or delivery guarantees were added anywhere.
+
+### 4. Missing services (Brand Registry, product research, 3PL)
+
+- **Brand Registry (S07)**: complete, accurate content already exists in `records.json`, expanded further this pass (see item 1's redirect note). It remains **unpublished** (`INACTIVE_IDS` in `src/content/registry.ts`) — publishing it is a business confirmation, not a content gap, and no new confirmation was supplied this pass. Unchanged decision from 14 September, re-verified rather than re-litigated.
+- **Amazon wholesale (S06)**: same status, same reasoning, unchanged.
+- **Product research / product hunting**: still zero source facts anywhere in the repo or supplied this pass — no draft was fabricated to fill the gap. See `BUSINESS-INPUTS-NEEDED.md` item 3.
+- **UAE/KSA 3PL and fulfilment**: still zero source facts. See `BUSINESS-INPUTS-NEEDED.md` item 4. No warehouse addresses, capacity or turnaround times were invented.
+
+If S06/S07 are confirmed later, publishing them is a one-line change (`INACTIVE_IDS` in `registry.ts`) that automatically adds them to the sitemap, the services hub and the header dropdown — no further content work needed.
+
+### 5. Blog metadata and editorial quality
+
+- Added an `image`/`imageAlt` field to `PageMetadata` (`src/content/types.ts`) and wired it through: `src/content/head.ts` (absolute `og:image` per record), `src/components/site/ArticleTemplate.tsx` (visible hero image with explicit `width`/`height` to reserve layout space, `loading="lazy"` since it sits below the page's `<h1>`/hero text, and `image` in the `BlogPosting` JSON-LD as an absolute URL).
+- All 12 existing articles plus the new one (13 total) now have a **topically assigned, pre-existing licensed asset** from `public/images/` — the same 13 files already used across the homepage's service teasers. No new, stock, or AI-generated imagery was introduced. See `BUSINESS-INPUTS-NEEDED.md` item 12 for a licensing-reuse confirmation request.
+- Dates: **not changed**. All 12 existing articles keep `publishedAt: "2026-09-10"` (the verified git-history date from the 14 September pass) and B07's existing `reviewedAt: "2026-09-13"`. B07's body content changed this pass (the Brand Registry benefits expansion) but its `reviewedAt` was **not** bumped, because that would misrepresent a substantive-update date that didn't actually happen on that field's terms — it already carries a 13 September review date from the prior pass's own edit; a repo owner should decide whether this pass's further edit warrants a new `reviewedAt`. The new article (`B13`) gets `publishedAt: "2026-09-17"` — the real date it was written and first published, not backdated.
+- `bodyWordCount` was recomputed programmatically from actual `bodyMarkdown` for every record (all 43) after all content edits, so the metadata stays honest rather than stale.
+- Canonical URLs, publisher references (`@id` to the shared Organization node) and breadcrumb JSON-LD were not touched and remain correct.
+- Author: still "Ecomtik Editorial Team" for all 13 articles — no named individual was supplied this pass. See `BUSINESS-INPUTS-NEEDED.md` item 6 (unchanged).
+
+### 6. Privacy and Terms
+
+No new legal facts were supplied this pass (entity name, registration, retention periods, governing law, etc. — see `BUSINESS-INPUTS-NEEDED.md` item 1, unchanged). `/privacy` and `/terms` remain the short, honest "not yet published" notice, correctly `noindex, nofollow`, and are **not** listed as completed. No legal text, entity details or compliance claims were invented.
+
+### 7. Site health and accessibility — verified this pass
+
+Using a local production build (`npm run build` + `npm run preview`) plus a live check against ecomtik.com:
+
+- `curl -I https://ecomtik.com{/blog/amazon-brand-registry-explained,/blog/how-to-launch-on-amazon-uae-2026,/case-studies}` → all `404` (live, before this pass's redirect deploys) — confirms the audit's finding and establishes the exact baseline these fixes address.
+- Local build: a genuinely nonexistent path (`/this-does-not-exist-abc`) → real `404` status (not a soft-404 200). `/admin/login` → `200` with `noindex, nofollow` intact.
+- `public/sitemap.xml` (regenerated by `npm run generate-sitemap`, part of `prebuild`): 38 URLs (37 + the new article), all from `getPublishedRecords`-equivalent logic, so it can't include an inactive/unpublished record.
+- Spot-checked `<title>`, canonical tag and JSON-LD on the new article and on S02 (Amazon PPC) locally — correct, one `<h1>` each, `BlogPosting`/`Organization`/`BreadcrumbList` JSON-LD present and well-formed.
+- Real Chrome check: Services header dropdown opens on hover, lists all 14 published services with the updated titles, closes on `Escape` (confirmed via screenshot before/after). Keyboard/focus behavior beyond this wasn't separately re-tested this pass (it was verified working in the 14 September pass and this pass didn't touch the dropdown component).
+- **Not verified**: true mobile-viewport layout. This environment's window-resize tool does not change the actual rendered viewport (confirmed again this pass — screenshots after a 390×844 resize request still rendered at the desktop 1568px viewport). This is the same limitation recorded in the 14 September pass; still unresolved, still honestly reported rather than assumed fine.
+- Performance: not lab-measured (no Lighthouse/CWV tool available in this environment). Observed, not claimed as a score: Hero's LCP image (`hero-amazon-growth.jpg`, 172 KB) already has `fetchPriority="high"` and no `loading="lazy"` — correct or the LCP image. The 13 reused images range from 172 KB to 700 KB each; they were already live on the site before this pass and are now also referenced on blog article pages, so more pages load one of these) — worth compressing at some point, but recompressing existing brand assets wasn't in this pass's scope and risks a visible quality change without sign-off. Admin/CMS bundles (`AdminShell`, `admin-auth-server-fn`, `blog-store-server-fn`, `BlogPostForm`, `login`) build as separate chunks from the public route chunks (visible in the build output) — not proven zero-loaded on public pages via a network trace this pass, but the route-based code-splitting structure means they aren't in the shared bundle public pages import.
+
+### 8. Contact and analytics — verified only, no changes
+
+- `trackEvent("generate_lead")` in `src/components/site/Contact.tsx` fires only after `submitContact()` returns `{ ok: true }` — a real backend success, not a button click. No parameters (and so no PII) are passed to the event.
+- `src/lib/contact-server-fn.ts`: validation, honeypot and minimum-fill-time spam checks unchanged; secrets (`GMAIL_USER`, `GMAIL_APP_PASSWORD`) still read only from `process.env`; no test enquiry was sent (no authorization requested or given for a live send this pass).
+- No duplicate analytics tags added; GA4 ID (`G-C33SDCHS6X` in `src/routes/__root.tsx`) unchanged; no Search Console token invented (none supplied — see `BUSINESS-INPUTS-NEEDED.md` item 8, unchanged).
+
+### 9. Verify and deploy
 
 - `npx tsc --noEmit` — clean.
-- `npm run build` (full pipeline: `prebuild` → sitemap regen → `vite build`, including the admin/blog-store bundles) — succeeds.
-- `npx eslint` on every changed file — clean aside from the repo-wide pre-existing Windows CRLF/prettier noise (confirmed pre-existing by diffing against `git stash`, same pattern documented in prior passes; not introduced by this pass).
-- Real browser (Chrome automation) checks, all **passed**:
-  - Homepage "Grow On Amazon" → navigates to `/contact` (was previously a dead `#contact` anchor).
-  - A service page's CTA → `/contact?service=S02` → the "Service required" field pre-selects "Amazon PPC Management and Advertising" correctly.
-  - Services header dropdown — hover-open, stays open into the panel, closes correctly; re-confirmed unaffected by this pass's changes.
-  - Article page (`/blog/high-amazon-acos`) — visible byline "Ecomtik Editorial Team" and date "10 September 2026" render; `BlogPosting` JSON-LD present with `"@type":"Organization"` author (not `Person`, correctly matching a team byline).
-  - `/privacy` — no longer shows the internal checklist; shows the short notice + Contact link only.
-  - `/admin/login` — still correctly `noindex, nofollow`.
-- `curl` checks: sitemap.xml (37 URLs, unchanged), canonical tag present and absolute on `/services/amazon-ppc-management`, `og:image` present and absolute on the sampled article.
-- **Not verified**: real mobile-device viewport (this environment's window-resize tool does not change the actual browser viewport — confirmed via `window.outerWidth` reporting 0 — so true small-screen layout could not be visually confirmed this pass; the content added uses the same responsive typography classes as the rest of the page, so no new overflow risk is expected, but this is reasoning, not a verified screenshot). Lighthouse/Core Web Vitals were not run — no lab-measurement tool was available in this environment; nothing is claimed about performance scores.
+- `npm run build` (prebuild sitemap regen → `vite build`, client + SSR + Netlify function bundle) — succeeds, admin/blog-store bundles present.
+- `npx eslint` on every changed file — clean. (Note: the Edit tooling in this session initially wrote several files with CRLF line endings against this repo's LF convention, which eslint's `prettier/prettier` rule flagged as ~400 errors; normalized to LF and re-ran — zero errors. Mentioning this because the 14 September pass's handover attributed similar-looking lint noise to a pre-existing repo-wide pattern; this pass's noise was session-introduced and has been fixed, not left as "pre-existing".)
+- Reviewed the full diff before committing: 7 source files plus `records.json`, one new file (`public/_redirects`), plus the auto-regenerated `public/sitemap.xml`. No unintended changes to the admin panel, auth, contact backend, analytics wiring, or design system.
 
 ### Deployment status
 
-**Pushed to `origin/main` (fast-forward, no force) — not independently verified as deployed.** This session has no Netlify CLI, API token, or dashboard access, so I cannot confirm Netlify has built and published this commit to ecomtik.com.
+**Pushed to `origin/main` (fast-forward, no force)** — see the commit hash at the top of this file once the follow-up commit fills it in. **Not independently verified as deployed** — this session has no Netlify CLI, API token or dashboard access, matching the 14 September pass's limitation exactly (see `BUSINESS-INPUTS-NEEDED.md` item 10, unchanged).
 
-**Exact remaining check**: open the Netlify dashboard for this site, confirm the latest production deploy's commit hash matches the one at the top of this file, then load https://ecomtik.com/ and spot-check that "Grow On Amazon" points to `/contact` and that `/privacy` no longer shows the checklist — those two are the fastest visual confirmation that the new build is live.
+**Exact remaining check**: open the Netlify dashboard, confirm the latest production deploy's commit hash matches this file's top line, then check `https://ecomtik.com/blog/amazon-brand-registry-explained` redirects (301) to `/blog/amazon-brand-registry-checklist`, `https://ecomtik.com/blog/how-to-launch-on-amazon-uae-2026` returns 200 with real content, and `https://ecomtik.com/case-studies` still correctly 404s.
 
-No claim is made about Google indexing, rankings, or Core Web Vitals field data — none of that was measured or is measurable from this environment.
+No claim is made that any of this pass's changes will move rankings for the four non-brand queries the audit flagged (account management, PPC, sourcing, listing optimization) — those are implementation changes; ranking movement is a separate, unmeasured, future outcome. See the Search Console checklist below for how to actually track it.
+
+### Search Console checklist (manual, requires account access this session doesn't have)
+
+1. Verify the `ecomtik.com` domain property if not already verified (HTML file, meta tag or DNS method — see `BUSINESS-INPUTS-NEEDED.md` item 8).
+2. Submit `https://ecomtik.com/sitemap.xml` (38 URLs as of this pass) in Search Console.
+3. Use URL Inspection on the priority updated URLs: the 4 retitled service pages (S01–S04), the redirected Brand Registry URL, and the restored UAE launch article — request indexing for each once live.
+4. Review the Indexing → Pages report's "Not found (404)" and "Page with redirect" buckets for the three old URLs, to confirm Google picks up the redirect and the restored page rather than continuing to show the old 404s.
+5. In Performance, filter by query and compare UAE vs Saudi Arabia (Search Console's Country filter) **separately** for the four non-brand queries the audit flagged — clicks, impressions and average position — rather than one blended GCC number, since the audit's own observation was market-specific.
 
 ### Remaining business inputs
 
-See `BUSINESS-INPUTS-NEEDED.md` for the full list with exact detail. Summary: legal facts for Privacy/Terms; a business decision on S06 (wholesale) and S07 (Brand Registry) — content is ready, just unconfirmed; source facts for a product-research page and a 3PL/fulfilment page (neither has any content drafted, by design — there was nothing to draft from); About-page team information; whether a named blog author is wanted instead of the editorial-team byline; Search Console verification; confirmation that Netlify's `GMAIL_USER`/`GMAIL_APP_PASSWORD` environment variables are actually set (contact form cannot deliver mail without them — not checked this pass, no dashboard access).
+See `BUSINESS-INPUTS-NEEDED.md` for the full list. Summary of what's still open after this pass: legal facts for Privacy/Terms; a go/no-go business decision on S06 (wholesale) and S07 (Brand Registry) publication; source facts for product research and 3PL pages (still zero facts to draft from); About-page named team members; a named blog author if wanted instead of the editorial-team byline; Search Console verification; confirmation Netlify's `GMAIL_USER`/`GMAIL_APP_PASSWORD` are actually set in production; confirmation that reusing the 13 existing images on blog articles is covered by their existing licence; and Netlify deployment verification for this pass's commit.

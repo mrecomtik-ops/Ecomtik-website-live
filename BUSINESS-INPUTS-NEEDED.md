@@ -1,6 +1,8 @@
 # Business inputs needed
 
-Everything on this list blocked a specific piece of implementation work from this pass. Nothing here was invented or guessed — each item is either genuinely missing, or exists but needs a business-side decision before it can be published. Supplying any one item unblocks exactly the work named under it.
+Everything on this list blocked a specific piece of implementation work. Nothing here was invented or guessed — each item is either genuinely missing, or exists but needs a business-side decision before it can be published. Supplying any one item unblocks exactly the work named under it.
+
+**Updated 17 September 2026** (SEO-audit follow-up pass): items 2, 3 and 4 were re-checked against this pass's task list (Brand Registry, product research, 3PL) — no new business confirmation was supplied during this pass, so the decisions below are unchanged from 14 September. A new item 11 (old-URL case studies) and item 12 (image licensing) were added.
 
 ## 1. Legal facts for /privacy and /terms
 
@@ -79,3 +81,11 @@ Not touched this pass, and nothing was invented. GA4 is already configured (`G-C
 ## 10. Netlify deployment verification
 
 This session has no Netlify CLI/API/dashboard access, so the push to `origin/main` could not be confirmed as actually deployed to ecomtik.com. See `IMPLEMENTATION-STATUS.md` for the exact steps to confirm.
+
+## 11. Old `/case-studies` URL — confirmed no restore, by design
+
+The old `/case-studies` page (last present in the pre-rebuild single-page site, commit history around `932f2b5`) listed four client brands (Aurelia Beauty, Halcyon Home, Kayan Wellness, Verdant Foods) with specific revenue, TACOS and Buy Box figures. None of this could be verified — no client names, permissions or figures exist anywhere else in the repo or in any supplied business fact. Restoring it would mean publishing fabricated case studies, which is explicitly out of scope. `/case-studies` is intentionally left as a genuine 404 (verified: `curl -I https://ecomtik.com/case-studies` → 404, not a soft-404). If Ecomtik has real, permissioned client results, supply brand name (with permission to publish), the actual figures and their source, and a case-studies page can be built the same way the rest of the site's content is — evidence first, copy second.
+
+## 12. Blog and service-page images — licensing confirmation
+
+This pass added an `image`/`imageAlt` field to every blog article's content record and wired it into visible article headers, Open Graph tags and `BlogPosting` JSON-LD. Every image used is one of the 13 pre-existing files already live in `public/images/` (the same set used across the homepage's service teasers) — no new or stock imagery was introduced, and none were AI-generated for this pass. Confirm Ecomtik holds the rights to these 13 files for this reuse (they were already in the repo before this pass, so this is a confirmation request, not a new requirement); if any file's licence doesn't cover this additional use, say which one and it can be swapped or removed from articles specifically.

@@ -24,7 +24,7 @@ const TEASERS: Teaser[] = [
   {
     eyebrow: "Product Sourcing",
     title: "From concept to shelf-ready reality",
-    copy: "A vetted supplier network across Asia, the Gulf and Europe — OEM/ODM development, quality control and manufacturing coordination without the risk.",
+    copy: "A vetted supplier network across Asia, the Gulf and Europe — OEM/ODM development, quality control and manufacturing coordination that help you identify and reduce sourcing risk before you commit to an order.",
     image: IMAGES.factory,
     to: "/services/amazon-product-sourcing",
     cta: "See how sourcing works",
