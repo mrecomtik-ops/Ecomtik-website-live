@@ -91,9 +91,15 @@ Using a local production build (`npm run build` + `npm run preview`) plus a live
 
 ### Deployment status
 
-**Pushed to `origin/main` (fast-forward, no force)** — see the commit hash at the top of this file once the follow-up commit fills it in. **Not independently verified as deployed** — this session has no Netlify CLI, API token or dashboard access, matching the 14 September pass's limitation exactly (see `BUSINESS-INPUTS-NEEDED.md` item 10, unchanged).
+**Pushed to `origin/main` (fast-forward, `6439fe0` → `da4811e`) and confirmed live on ecomtik.com** — this session still has no Netlify dashboard/CLI/API access, so the deploy itself couldn't be watched, but the public domain was re-curled after the push and reflects the new commit:
 
-**Exact remaining check**: open the Netlify dashboard, confirm the latest production deploy's commit hash matches this file's top line, then check `https://ecomtik.com/blog/amazon-brand-registry-explained` redirects (301) to `/blog/amazon-brand-registry-checklist`, `https://ecomtik.com/blog/how-to-launch-on-amazon-uae-2026` returns 200 with real content, and `https://ecomtik.com/case-studies` still correctly 404s.
+- `curl -sI https://ecomtik.com/blog/amazon-brand-registry-explained` → `301`, `Location: /blog/amazon-brand-registry-checklist`, one hop to a final `200` (verified with `curl -sIL ... -w`) — no chain, no loop.
+- `https://ecomtik.com/blog/how-to-launch-on-amazon-uae-2026` → `200` (the restored article).
+- `https://ecomtik.com/case-studies` → still `404` (unchanged, as intended).
+- `https://ecomtik.com/services/amazon-ppc-management` `<title>` → "Amazon PPC Management UAE | Ecomtik" (the new geo-targeted title).
+- `https://ecomtik.com/sitemap.xml` → 38 `<loc>` entries.
+
+What's still outstanding: which Netlify deploy ID/timestamp served these responses, and whether the CDN has fully finished propagating everywhere (edge caches can lag a few minutes after origin) — a dashboard check would confirm both, but the functional checks above already show the new commit is live.
 
 No claim is made that any of this pass's changes will move rankings for the four non-brand queries the audit flagged (account management, PPC, sourcing, listing optimization) — those are implementation changes; ranking movement is a separate, unmeasured, future outcome. See the Search Console checklist below for how to actually track it.
 
