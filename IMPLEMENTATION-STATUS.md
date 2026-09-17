@@ -2,7 +2,7 @@
 
 ## This pass — 17 September 2026, live SEO audit follow-up
 
-**Commit:** `PENDING` (filled in by a follow-up commit once this one exists — see repo convention from the 14 September pass).
+**Commit:** `9d79854` (pushed to `origin/main` as a fast-forward from `6439fe0`).
 
 This pass implements the remaining items from a live SEO audit of ecomtik.com dated 16 September 2026 (37 sitemap pages all 200, unique titles/descriptions/canonicals, one H1 per page, no accidental noindex, homepage CTA and services dropdown already fixed, all 12 blog articles had BlogPosting schema and visible byline/date — all confirmed still true and preserved). It builds on the 14 September pass (commit `1cacdc6`) without redoing that work.
 
